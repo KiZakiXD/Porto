@@ -8,7 +8,7 @@ import ModernFooter from "@/components/modern-footer"
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen w-full bg-white dark:bg-gray-900">
+    <main className="min-h-screen w-full bg-background text-foreground">
       <Navbar />
       <HeroSection />
       <AboutSection />
@@ -16,6 +16,6 @@ export default function Home() {
       <ProjectsSection />
       <ContactSection />
       <ModernFooter />
-    </div>
+    </main>
   )
 }
