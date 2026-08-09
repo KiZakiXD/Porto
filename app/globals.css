@@ -62,7 +62,7 @@ body {
   overflow-x: hidden;
   background: hsl(var(--background));
   color: hsl(var(--foreground));
-  font-family: var(--font-inter), sans-serif;
+  font-family: var(--font-montserrat), sans-serif;
   text-rendering: optimizeLegibility;
 }
 
@@ -75,11 +75,11 @@ body {
 h1,
 h2,
 h3 {
-  font-family: var(--font-space-grotesk), sans-serif;
+  font-family: var(--font-outfit), sans-serif;
 }
 
 .font-sans {
-  font-family: var(--font-inter), sans-serif;
+  font-family: var(--font-montserrat), sans-serif;
 }
 
 .editorial-grid {
@@ -102,8 +102,8 @@ h3 {
 }
 
 .display-title {
-  font-family: var(--font-space-grotesk), sans-serif;
-  font-weight: 600;
+  font-family: var(--font-outfit), sans-serif;
+  font-weight: 700;
   letter-spacing: -0.055em;
   line-height: 0.94;
 }
