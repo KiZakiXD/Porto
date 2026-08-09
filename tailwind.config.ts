@@ -17,8 +17,8 @@ const config = {
     },
     extend: {
       fontFamily: {
-        sans: ["var(--font-montserrat)", "sans-serif"],
-        heading: ["var(--font-outfit)", "sans-serif"],
+        sans: ["ui-sans-serif", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "sans-serif"],
+        heading: ["Arial", "Helvetica Neue", "Helvetica", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
