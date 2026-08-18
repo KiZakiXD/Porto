@@ -12,7 +12,7 @@ export default function AboutSection() {
       <div className="container">
         <div className="grid gap-8 border-b border-border pb-10 lg:grid-cols-[auto_1fr] lg:gap-16">
           <p className="section-kicker pt-2">01 / Profile</p>
-          <h2 className="display-title max-w-6xl text-[clamp(3.6rem,9.5vw,8.5rem)]">
+          <h2 className="scroll-type-in display-title max-w-6xl text-[clamp(3.6rem,9.5vw,8.5rem)]">
             <span className="block">Curious</span>
             <span className="display-outline block">by default.</span>
             <span className="display-italic block text-right text-primary">Practical.</span>
@@ -77,7 +77,7 @@ export default function AboutSection() {
                 onchain tooling for token and memecoin communities.
               </p>
               <p>
-                I collaborate with small teams exploring products across Ethereum, Base, and Robinhood Chain while
+                I collaborate with small teams exploring products across Base and Robinhood Chain while
                 continuing to sharpen the web engineering behind them.
               </p>
             </div>

@@ -30,7 +30,7 @@ export default function ContactSection() {
         <div className="grid gap-12 lg:grid-cols-[0.88fr_1.12fr] lg:gap-20">
           <div>
             <p className="section-kicker">04 / Contact</p>
-            <h2 className="display-title mt-7 text-[clamp(2.75rem,7vw,6.4rem)]" aria-label="Have an idea? Let's build it.">
+            <h2 className="scroll-type-in display-title mt-7 text-[clamp(2.75rem,7vw,6.4rem)]" aria-label="Have an idea? Let's build it.">
               <span className="block">Have an idea?</span>
               <span className="display-italic mt-[0.08em] block text-primary">Let&apos;s build it.</span>
             </h2>

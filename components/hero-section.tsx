@@ -28,10 +28,10 @@ export default function HeroSection() {
               className="display-title text-[clamp(3.7rem,16.4vw,10.5rem)]"
               aria-label="Code with character. Built to work."
             >
-              <span className="block">Code with</span>
-              <span className="display-italic block text-primary">character.</span>
-              <span className="mt-[0.08em] block text-right">Built to</span>
-              <span className="display-outline block text-right">work.</span>
+              <span className="type-reveal block" style={{ animationDelay: "80ms" }}>Code with</span>
+              <span className="type-reveal display-italic block text-primary" style={{ animationDelay: "160ms" }}>character.</span>
+              <span className="type-reveal mt-[0.08em] block text-right" style={{ animationDelay: "240ms" }}>Built to</span>
+              <span className="type-reveal display-outline block text-right" style={{ animationDelay: "320ms" }}>work.</span>
             </h1>
           </div>
         </div>

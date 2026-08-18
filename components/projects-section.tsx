@@ -5,7 +5,7 @@ export default function ProjectsSection() {
         <div className="border-b border-border pb-10">
           <p className="section-kicker">03 / Selected work</p>
           <h2
-            className="display-title mt-7 max-w-6xl text-[clamp(3.8rem,12.5vw,10rem)]"
+            className="scroll-type-in display-title mt-7 max-w-6xl text-[clamp(3.8rem,12.5vw,10rem)]"
             aria-label="Coming soon"
           >
             <span className="block">Coming</span>
