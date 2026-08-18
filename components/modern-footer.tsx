@@ -16,7 +16,8 @@ export default function ModernFooter() {
       <div className="container py-10 md:py-12">
         <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
           <p className="max-w-md text-sm leading-6 text-background/60">
-            Selected work is being prepared. Reach out if you would like to build something useful together.
+            Building across AI, security, automation, and onchain products. Reach out if you have something useful in
+            mind.
           </p>
 
           <div className="flex flex-wrap gap-x-5 gap-y-3">

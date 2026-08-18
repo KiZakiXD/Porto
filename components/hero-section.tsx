@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { ArrowDownRight, ArrowUpRight } from "lucide-react"
 
-const tickerItems = ["Web interfaces", "Automation", "AI experiments", "Digital products"]
+const tickerItems = ["AI development", "Security research", "Automation", "Onchain products"]
 
 export default function HeroSection() {
   const ticker = [...tickerItems, ...tickerItems]
@@ -14,7 +14,7 @@ export default function HeroSection() {
             <span className="h-2 w-2 rounded-full bg-primary" />
             Available for selected projects
           </span>
-          <span>Independent developer · 2026</span>
+          <span>AI · Security · Onchain</span>
         </div>
 
         <div className="grid flex-1 items-center gap-8 py-12 lg:grid-cols-[5rem_1fr] lg:py-16">
@@ -23,7 +23,7 @@ export default function HeroSection() {
           </div>
 
           <div>
-            <p className="section-kicker mb-7">Aldi Zakia Pratama / Independent developer</p>
+            <p className="section-kicker mb-7">Aldi Zakia Pratama / AI · Security · Onchain</p>
             <h1
               className="display-title text-[clamp(3.7rem,16.4vw,10.5rem)]"
               aria-label="Code with character. Built to work."
@@ -39,8 +39,7 @@ export default function HeroSection() {
         <div className="grid gap-7 border-t border-border py-7 md:grid-cols-[auto_1fr_auto] md:items-end md:gap-10">
           <span className="meta-copy text-xs text-muted-foreground">[ 01 — 26 ]</span>
           <p className="max-w-2xl text-lg leading-[1.55] tracking-[-0.02em] text-muted-foreground md:text-xl">
-            Developer combining sharp interfaces, useful automation, and practical AI into digital products that feel
-            intentional.
+            Developer working across AI systems, security research, automation, and experimental onchain products.
           </p>
           <div className="flex flex-wrap gap-x-6 gap-y-4 md:justify-end">
             <Link
@@ -73,7 +72,7 @@ export default function HeroSection() {
             </span>
           ))}
         </div>
-        <span className="sr-only">Web interfaces, automation, AI experiments, and digital products.</span>
+        <span className="sr-only">AI development, security research, automation, and onchain products.</span>
       </div>
     </section>
   )

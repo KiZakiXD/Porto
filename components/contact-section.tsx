@@ -30,14 +30,13 @@ export default function ContactSection() {
         <div className="grid gap-12 lg:grid-cols-[0.88fr_1.12fr] lg:gap-20">
           <div>
             <p className="section-kicker">04 / Contact</p>
-            <h2 className="display-title mt-7 text-[clamp(3rem,7.5vw,7rem)]">
-              <span className="block">Let&apos;s make</span>
-              <span className="display-outline block">something</span>
-              <span className="display-italic block pl-[0.65em] text-primary sm:pl-[1em]">useful.</span>
+            <h2 className="display-title mt-7 text-[clamp(2.75rem,7vw,6.4rem)]" aria-label="Have an idea? Let's build it.">
+              <span className="block">Have an idea?</span>
+              <span className="display-italic mt-[0.08em] block text-primary">Let&apos;s build it.</span>
             </h2>
             <p className="mt-8 max-w-xl text-base leading-7 text-muted-foreground md:text-lg">
-              Send the context directly from the form, or reach out through email and WhatsApp. Clear briefs are very
-              welcome; rough ideas are fine too.
+              Share the goal, scope, and rough timeline. A clear brief is welcome, but an unfinished idea is enough to
+              start a useful conversation.
             </p>
 
             <div className="mt-10 border-t border-border">

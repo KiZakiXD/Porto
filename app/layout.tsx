@@ -8,7 +8,7 @@ import "./globals.css"
 export const metadata: Metadata = {
   title: "KizakiXD — Developer Portfolio",
   description:
-    "Portfolio of Aldi Zakia Pratama (KizakiXD), focused on web interfaces, automation, AI, and practical software projects.",
+    "Portfolio of Aldi Zakia Pratama (KizakiXD), focused on AI development, automation, security research, and onchain products.",
 }
 
 export default function RootLayout({ children }: { children: ReactNode }) {
