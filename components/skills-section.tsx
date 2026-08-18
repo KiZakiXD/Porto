@@ -133,14 +133,29 @@ function CollaborationMark({ kind }: { kind: CollaborationKind }) {
   }
 
   return (
-    <Image
-      src="/images/xiaomi-logo.jpg"
-      alt=""
-      width={48}
-      height={48}
-      className="h-10 w-10 rounded-[24%] object-cover"
-      aria-hidden="true"
-    />
+    <svg viewBox="0 0 1536 1536" className="h-10 w-10" aria-hidden="true">
+      <defs>
+        <filter id="xiaomi-glyph-threshold" x="0" y="0" width="100%" height="100%">
+          <feColorMatrix type="saturate" values="0" />
+          <feComponentTransfer>
+            <feFuncR type="discrete" tableValues="0 0 0 1" />
+            <feFuncG type="discrete" tableValues="0 0 0 1" />
+            <feFuncB type="discrete" tableValues="0 0 0 1" />
+          </feComponentTransfer>
+        </filter>
+        <mask id="xiaomi-glyph-mask" x="0" y="0" width="1536" height="1536" maskUnits="userSpaceOnUse">
+          <image
+            href="/images/xiaomi-logo.jpg"
+            width="1536"
+            height="1536"
+            preserveAspectRatio="xMidYMid meet"
+            filter="url(#xiaomi-glyph-threshold)"
+          />
+        </mask>
+      </defs>
+      <rect width="1536" height="1536" rx="340" fill="#ff6900" />
+      <rect width="1536" height="1536" fill="white" mask="url(#xiaomi-glyph-mask)" />
+    </svg>
   )
 }
 
