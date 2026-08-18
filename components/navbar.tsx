@@ -20,8 +20,8 @@ export default function Navbar() {
     const handleScroll = () => {
       const scrollPosition = window.scrollY + 160
 
-      for (let i = navLinks.length - 1; i >= 0; i--) {
-        const link = navLinks[i]
+      for (let index = navLinks.length - 1; index >= 0; index--) {
+        const link = navLinks[index]
         const element = document.getElementById(link.section)
         if (element && scrollPosition >= element.offsetTop) {
           setActiveSection(link.section)
@@ -35,6 +35,20 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  useEffect(() => {
+    document.body.style.overflow = isMenuOpen ? "hidden" : ""
+
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setIsMenuOpen(false)
+    }
+
+    window.addEventListener("keydown", closeOnEscape)
+    return () => {
+      document.body.style.overflow = ""
+      window.removeEventListener("keydown", closeOnEscape)
+    }
+  }, [isMenuOpen])
+
   const goTo = (href: string, section: string) => {
     setIsMenuOpen(false)
     setActiveSection(section)
@@ -42,12 +56,12 @@ export default function Navbar() {
   }
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-border bg-background/92 backdrop-blur-md">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-border bg-background/90 backdrop-blur-xl">
       <div className="container flex h-16 items-center justify-between">
         <button
           type="button"
           onClick={() => goTo("#home", "home")}
-          className="font-heading text-lg font-semibold tracking-[-0.04em] transition-opacity hover:opacity-60"
+          className="font-mono text-sm font-semibold uppercase tracking-[-0.045em] transition-opacity hover:opacity-60"
           aria-label="Back to home"
         >
           KIZAKIXD<span className="text-primary">.</span>
@@ -60,15 +74,15 @@ export default function Navbar() {
                 type="button"
                 key={link.section}
                 onClick={() => goTo(link.href, link.section)}
-                className={`relative py-2 text-xs font-semibold uppercase tracking-[0.14em] transition-colors ${
+                className={`relative py-2 font-mono text-[0.68rem] font-semibold uppercase tracking-[0.12em] transition-colors ${
                   activeSection === link.section ? "text-foreground" : "text-muted-foreground hover:text-foreground"
                 }`}
               >
-                <span className="mr-1 text-[10px] text-muted-foreground">0{index + 1}</span>
+                <span className="mr-1.5 text-[0.6rem] text-muted-foreground">0{index + 1}</span>
                 {link.name}
-                {activeSection === link.section && (
+                {activeSection === link.section ? (
                   <span className="absolute inset-x-0 -bottom-[13px] h-px bg-primary" />
-                )}
+                ) : null}
               </button>
             ))}
           </nav>
@@ -80,32 +94,56 @@ export default function Navbar() {
           <button
             type="button"
             onClick={() => setIsMenuOpen((value) => !value)}
-            className="grid h-10 w-10 place-items-center border border-border"
+            className="grid h-10 w-10 place-items-center border border-border transition-colors hover:border-foreground"
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             aria-expanded={isMenuOpen}
+            aria-controls="mobile-navigation"
           >
             {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </div>
       </div>
 
-      {isMenuOpen && (
-        <nav className="border-t border-border bg-background md:hidden" aria-label="Mobile navigation">
-          <div className="container py-3">
-            {navLinks.map((link, index) => (
-              <button
-                type="button"
-                key={link.section}
-                onClick={() => goTo(link.href, link.section)}
-                className="flex w-full items-center justify-between border-b border-border py-4 text-left font-heading text-2xl font-medium last:border-b-0"
-              >
-                <span>{link.name}</span>
-                <span className="text-xs font-sans text-muted-foreground">0{index + 1}</span>
-              </button>
-            ))}
+      {isMenuOpen ? (
+        <nav
+          id="mobile-navigation"
+          className="editorial-grid fixed inset-x-0 bottom-0 top-16 overflow-y-auto bg-background md:hidden"
+          aria-label="Mobile navigation"
+        >
+          <div className="container flex min-h-full flex-col justify-between py-7">
+            <div>
+              {navLinks.map((link, index) => {
+                const isActive = activeSection === link.section
+
+                return (
+                  <button
+                    type="button"
+                    key={link.section}
+                    onClick={() => goTo(link.href, link.section)}
+                    className="group flex w-full items-baseline justify-between border-b border-border py-3 text-left"
+                  >
+                    <span
+                      className={`display-title text-[clamp(2.8rem,13.5vw,5rem)] transition-colors ${
+                        isActive ? "text-primary" : "group-hover:text-primary"
+                      }`}
+                    >
+                      {link.name}
+                    </span>
+                    <span className="font-mono text-[0.65rem] text-muted-foreground">0{index + 1}</span>
+                  </button>
+                )
+              })}
+            </div>
+
+            <div className="mt-10 flex items-center justify-between border-t border-border pt-5 font-mono text-[0.65rem] uppercase tracking-[0.16em] text-muted-foreground">
+              <span>Kudus / ID</span>
+              <span className="flex items-center gap-2 text-foreground">
+                <span className="h-2 w-2 rounded-full bg-primary" /> Available
+              </span>
+            </div>
           </div>
         </nav>
-      )}
+      ) : null}
     </header>
   )
 }

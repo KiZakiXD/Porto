@@ -27,25 +27,35 @@ export default function ContactSection() {
   return (
     <section id="contact" className="section-shell bg-card py-20 md:py-28">
       <div className="container">
-        <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
+        <div className="grid gap-12 lg:grid-cols-[0.88fr_1.12fr] lg:gap-20">
           <div>
             <p className="section-kicker">04 / Contact</p>
-            <h2 className="display-title mt-6 text-balance text-5xl sm:text-6xl lg:text-7xl">
-              Have something worth <span className="text-primary">building?</span>
+            <h2 className="display-title mt-7 text-[clamp(3.6rem,7.5vw,7rem)]">
+              <span className="block">Let&apos;s make</span>
+              <span className="display-outline block">something</span>
+              <span className="display-italic block text-right text-primary">useful.</span>
             </h2>
-            <p className="mt-7 max-w-xl text-base leading-7 text-muted-foreground md:text-lg">
-              Send the details directly from the form or use one of the links below. The form now opens your email
-              client with the message pre-filled instead of pretending a message was sent.
+            <p className="mt-8 max-w-xl text-base leading-7 text-muted-foreground md:text-lg">
+              Send the context directly from the form, or reach out through email and WhatsApp. Clear briefs are very
+              welcome; rough ideas are fine too.
             </p>
 
             <div className="mt-10 border-t border-border">
-              <a href={`mailto:${email}`} className="flex items-center justify-between border-b border-border py-5 hover:text-primary">
+              <a
+                href={`mailto:${email}`}
+                className="group flex items-center justify-between border-b border-border py-5 hover:text-primary"
+              >
                 <span className="flex items-center gap-3"><Mail className="h-4 w-4" /> {email}</span>
-                <ArrowUpRight className="h-4 w-4" />
+                <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
               </a>
-              <a href={whatsappUrl} target="_blank" rel="noreferrer" className="flex items-center justify-between border-b border-border py-5 hover:text-primary">
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="group flex items-center justify-between border-b border-border py-5 hover:text-primary"
+              >
                 <span className="flex items-center gap-3"><MessageCircle className="h-4 w-4" /> WhatsApp</span>
-                <ArrowUpRight className="h-4 w-4" />
+                <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
               </a>
               <div className="flex items-center gap-3 border-b border-border py-5 text-muted-foreground">
                 <MapPin className="h-4 w-4" /> Kudus, Central Java, Indonesia
@@ -64,7 +74,7 @@ export default function ContactSection() {
                   required
                   autoComplete="name"
                   placeholder="Your name"
-                  className="mt-3 w-full bg-transparent font-heading text-xl outline-none placeholder:text-muted-foreground/50"
+                  className="mt-3 w-full bg-transparent text-xl font-medium tracking-[-0.03em] outline-none placeholder:text-muted-foreground/50"
                 />
               </label>
               <label className="border-b border-border py-5 sm:pl-5">
@@ -77,7 +87,7 @@ export default function ContactSection() {
                   required
                   autoComplete="email"
                   placeholder="you@example.com"
-                  className="mt-3 w-full bg-transparent font-heading text-xl outline-none placeholder:text-muted-foreground/50"
+                  className="mt-3 w-full bg-transparent text-xl font-medium tracking-[-0.03em] outline-none placeholder:text-muted-foreground/50"
                 />
               </label>
             </div>
@@ -90,7 +100,7 @@ export default function ContactSection() {
                 onChange={handleChange}
                 required
                 placeholder="What are we building?"
-                className="mt-3 w-full bg-transparent font-heading text-xl outline-none placeholder:text-muted-foreground/50"
+                className="mt-3 w-full bg-transparent text-xl font-medium tracking-[-0.03em] outline-none placeholder:text-muted-foreground/50"
               />
             </label>
 
@@ -107,8 +117,12 @@ export default function ContactSection() {
               />
             </label>
 
-            <button type="submit" className="mt-6 inline-flex items-center gap-2 bg-foreground px-6 py-4 text-sm font-semibold text-background transition-transform hover:-translate-y-0.5">
-              Open email draft <ArrowUpRight className="h-4 w-4" />
+            <button
+              type="submit"
+              className="group mt-6 inline-flex items-center gap-2 bg-foreground px-6 py-4 font-mono text-xs font-semibold uppercase tracking-[0.1em] text-background transition-transform hover:-translate-y-0.5"
+            >
+              Open email draft
+              <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
             </button>
           </form>
         </div>

@@ -1,59 +1,79 @@
 import Link from "next/link"
 import { ArrowDownRight, ArrowUpRight } from "lucide-react"
 
+const tickerItems = ["Web interfaces", "Automation", "AI experiments", "Open source"]
+
 export default function HeroSection() {
+  const ticker = [...tickerItems, ...tickerItems]
+
   return (
-    <section id="home" className="editorial-grid min-h-screen bg-background pt-16">
-      <div className="container flex min-h-[calc(100vh-4rem)] flex-col justify-between py-10 md:py-14">
-        <div className="flex flex-col gap-4 border-b border-border pb-6 text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
-          <span className="flex items-center gap-2 text-foreground">
+    <section id="home" className="editorial-grid overflow-hidden bg-background pt-16">
+      <div className="container flex min-h-[calc(100svh-4rem)] flex-col">
+        <div className="meta-copy flex flex-col gap-3 border-b border-border py-5 text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
+          <span className="flex items-center gap-2.5 text-foreground">
             <span className="h-2 w-2 rounded-full bg-primary" />
             Available for selected projects
           </span>
           <span>Kudus, Indonesia · GMT+7</span>
         </div>
 
-        <div className="py-16 md:py-24">
-          <p className="section-kicker mb-6">Aldi Zakia Pratama / KizakiXD</p>
-          <h1 className="display-title max-w-6xl text-balance text-[clamp(3.8rem,11vw,9rem)]">
-            Building useful digital products
-            <span className="text-primary"> without the noise.</span>
-          </h1>
+        <div className="grid flex-1 items-center gap-8 py-12 lg:grid-cols-[5rem_1fr] lg:py-16">
+          <div className="meta-copy hidden h-full items-center justify-center border-r border-border text-[0.65rem] uppercase tracking-[0.22em] text-muted-foreground lg:flex">
+            <span className="[writing-mode:vertical-rl]">Portfolio / Volume 26</span>
+          </div>
 
-          <div className="mt-10 grid gap-8 border-t border-border pt-7 md:grid-cols-[1.4fr_1fr] md:items-end">
-            <p className="max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">
-              Developer exploring web interfaces, automation, AI, and open-source tooling. I care about clear ideas,
-              useful details, and software that feels intentional.
-            </p>
-
-            <div className="flex flex-wrap gap-3 md:justify-end">
-              <Link
-                href="#projects"
-                className="inline-flex items-center gap-2 bg-foreground px-5 py-3 text-sm font-semibold text-background transition-transform hover:-translate-y-0.5"
-              >
-                Selected work <ArrowDownRight className="h-4 w-4" />
-              </Link>
-              <Link
-                href="#contact"
-                className="inline-flex items-center gap-2 border border-border px-5 py-3 text-sm font-semibold transition-colors hover:border-foreground"
-              >
-                Start a conversation <ArrowUpRight className="h-4 w-4" />
-              </Link>
-            </div>
+          <div>
+            <p className="section-kicker mb-7">Aldi Zakia Pratama / KizakiXD</p>
+            <h1
+              className="display-title text-[clamp(3.7rem,16.4vw,10.5rem)]"
+              aria-label="Code with character. Built to work."
+            >
+              <span className="block">Code with</span>
+              <span className="display-italic block text-primary">character.</span>
+              <span className="mt-[0.08em] block text-right">Built to</span>
+              <span className="display-outline block text-right">work.</span>
+            </h1>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 border-t border-border sm:grid-cols-3">
-          {["Web interfaces", "Automation", "AI experiments"].map((item, index) => (
-            <div
-              key={item}
-              className="flex items-center justify-between border-b border-border py-4 sm:border-b-0 sm:border-r sm:px-5 sm:first:pl-0 sm:last:border-r-0"
+        <div className="grid gap-7 border-t border-border py-7 md:grid-cols-[auto_1fr_auto] md:items-end md:gap-10">
+          <span className="meta-copy text-xs text-muted-foreground">[ 01 — 26 ]</span>
+          <p className="max-w-2xl text-lg leading-[1.55] tracking-[-0.02em] text-muted-foreground md:text-xl">
+            Developer combining sharp interfaces, useful automation, and practical AI into digital products that feel
+            intentional.
+          </p>
+          <div className="flex flex-wrap gap-x-6 gap-y-4 md:justify-end">
+            <Link
+              href="#projects"
+              className="group inline-flex items-center gap-2 border-b border-foreground pb-1 text-sm font-semibold"
             >
-              <span className="font-heading text-lg font-medium">{item}</span>
-              <span className="text-xs text-muted-foreground">0{index + 1}</span>
-            </div>
+              Selected work
+              <ArrowDownRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:translate-y-0.5" />
+            </Link>
+            <Link
+              href="#contact"
+              className="group inline-flex items-center gap-2 border-b border-border pb-1 text-sm font-semibold text-muted-foreground transition-colors hover:border-foreground hover:text-foreground"
+            >
+              Start a conversation
+              <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      <div className="overflow-hidden border-y border-border bg-foreground py-3 text-background">
+        <div className="marquee-track" aria-hidden="true">
+          {ticker.map((item, index) => (
+            <span
+              key={`${item}-${index}`}
+              className="font-mono text-xs font-semibold uppercase tracking-[0.18em]"
+            >
+              {item}
+              <span className="mx-8 text-primary">✦</span>
+            </span>
           ))}
         </div>
+        <span className="sr-only">Web interfaces, automation, AI experiments, and open source.</span>
       </div>
     </section>
   )
