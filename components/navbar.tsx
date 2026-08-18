@@ -56,53 +56,55 @@ export default function Navbar() {
   }
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-border bg-background/90 backdrop-blur-xl">
-      <div className="container flex h-16 items-center justify-between">
-        <button
-          type="button"
-          onClick={() => goTo("#home", "home")}
-          className="font-mono text-sm font-semibold uppercase tracking-[-0.045em] transition-opacity hover:opacity-60"
-          aria-label="Back to home"
-        >
-          KIZAKIXD<span className="text-primary">.</span>
-        </button>
-
-        <div className="hidden items-center gap-7 md:flex">
-          <nav className="flex items-center gap-6" aria-label="Primary navigation">
-            {navLinks.map((link, index) => (
-              <button
-                type="button"
-                key={link.section}
-                onClick={() => goTo(link.href, link.section)}
-                className={`relative py-2 font-mono text-[0.68rem] font-semibold uppercase tracking-[0.12em] transition-colors ${
-                  activeSection === link.section ? "text-foreground" : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                <span className="mr-1.5 text-[0.6rem] text-muted-foreground">0{index + 1}</span>
-                {link.name}
-                {activeSection === link.section ? (
-                  <span className="absolute inset-x-0 -bottom-[13px] h-px bg-primary" />
-                ) : null}
-              </button>
-            ))}
-          </nav>
-          <ThemeToggle />
-        </div>
-
-        <div className="flex items-center gap-2 md:hidden">
-          <ThemeToggle />
+    <>
+      <header className="fixed inset-x-0 top-0 z-50 border-b border-border bg-background/90 backdrop-blur-xl">
+        <div className="container flex h-16 items-center justify-between">
           <button
             type="button"
-            onClick={() => setIsMenuOpen((value) => !value)}
-            className="grid h-10 w-10 place-items-center border border-border transition-colors hover:border-foreground"
-            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-            aria-expanded={isMenuOpen}
-            aria-controls="mobile-navigation"
+            onClick={() => goTo("#home", "home")}
+            className="font-mono text-sm font-semibold uppercase tracking-[-0.045em] transition-opacity hover:opacity-60"
+            aria-label="Back to home"
           >
-            {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            KIZAKIXD<span className="text-primary">.</span>
           </button>
+
+          <div className="hidden items-center gap-7 md:flex">
+            <nav className="flex items-center gap-6" aria-label="Primary navigation">
+              {navLinks.map((link, index) => (
+                <button
+                  type="button"
+                  key={link.section}
+                  onClick={() => goTo(link.href, link.section)}
+                  className={`relative py-2 font-mono text-[0.68rem] font-semibold uppercase tracking-[0.12em] transition-colors ${
+                    activeSection === link.section ? "text-foreground" : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  <span className="mr-1.5 text-[0.6rem] text-muted-foreground">0{index + 1}</span>
+                  {link.name}
+                  {activeSection === link.section ? (
+                    <span className="absolute inset-x-0 -bottom-[13px] h-px bg-primary" />
+                  ) : null}
+                </button>
+              ))}
+            </nav>
+            <ThemeToggle />
+          </div>
+
+          <div className="flex items-center gap-2 md:hidden">
+            <ThemeToggle />
+            <button
+              type="button"
+              onClick={() => setIsMenuOpen((value) => !value)}
+              className="grid h-10 w-10 place-items-center border border-border transition-colors hover:border-foreground"
+              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isMenuOpen}
+              aria-controls="mobile-navigation"
+            >
+              {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          </div>
         </div>
-      </div>
+      </header>
 
       {isMenuOpen ? (
         <nav
@@ -144,6 +146,6 @@ export default function Navbar() {
           </div>
         </nav>
       ) : null}
-    </header>
+    </>
   )
 }
