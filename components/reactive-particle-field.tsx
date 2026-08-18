@@ -11,11 +11,12 @@ type Particle = {
   angle: number
   drift: number
   depth: number
+  shape: number
   accent: boolean
 }
 
-const CONNECTION_DISTANCE = 112
-const POINTER_RADIUS = 190
+const CONNECTION_DISTANCE = 132
+const POINTER_RADIUS = 210
 
 export default function ReactiveParticleField() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -50,9 +51,9 @@ export default function ReactiveParticleField() {
     const color = (value: string, alpha: number) => `hsl(${value} / ${alpha})`
 
     const seedParticles = () => {
-      const density = Math.floor((width * height) / 15_000)
-      const limit = width < 640 ? 46 : 82
-      const count = Math.min(limit, Math.max(30, density))
+      const density = Math.floor((width * height) / 11_000)
+      const limit = width < 640 ? 62 : 108
+      const count = Math.min(limit, Math.max(42, density))
 
       particles = Array.from({ length: count }, (_, index) => {
         const angle = Math.random() * Math.PI * 2
@@ -68,7 +69,8 @@ export default function ReactiveParticleField() {
           angle,
           drift: 0.002 + Math.random() * 0.006,
           depth,
-          accent: index % 8 === 0,
+          shape: index % 5,
+          accent: index % 7 === 0,
         }
       })
     }
@@ -138,8 +140,8 @@ export default function ReactiveParticleField() {
           pointer.y,
           POINTER_RADIUS,
         )
-        halo.addColorStop(0, color(primary, 0.055))
-        halo.addColorStop(0.45, color(primary, 0.018))
+        halo.addColorStop(0, color(primary, 0.09))
+        halo.addColorStop(0.45, color(primary, 0.028))
         halo.addColorStop(1, color(primary, 0))
         context.fillStyle = halo
         context.fillRect(
@@ -150,9 +152,9 @@ export default function ReactiveParticleField() {
         )
 
         context.beginPath()
-        context.arc(pointer.x, pointer.y, 30, -0.35, Math.PI * 1.15)
-        context.strokeStyle = color(primary, 0.22)
-        context.lineWidth = 0.7
+        context.arc(pointer.x, pointer.y, 34, -0.35, Math.PI * 1.15)
+        context.strokeStyle = color(primary, 0.38)
+        context.lineWidth = 0.85
         context.stroke()
 
         if (pointer.pulse > 0.02) {
@@ -179,18 +181,14 @@ export default function ReactiveParticleField() {
           context.lineTo(second.x, second.y)
           context.strokeStyle = color(
             first.accent || second.accent ? primary : foreground,
-            strength * 0.11,
+            strength * 0.18 * Math.min(first.depth, second.depth),
           )
-          context.lineWidth = 0.55
+          context.lineWidth = first.accent || second.accent ? 0.75 : 0.55
           context.stroke()
         }
       }
 
       for (const particle of particles) {
-        const speed = Math.hypot(particle.vx, particle.vy)
-        const directionX = speed > 0.01 ? particle.vx / speed : Math.cos(particle.angle)
-        const directionY = speed > 0.01 ? particle.vy / speed : Math.sin(particle.angle)
-        const trail = 7 + speed * 9
         const particleColor = particle.accent ? primary : foreground
 
         if (pointer.active) {
@@ -200,34 +198,58 @@ export default function ReactiveParticleField() {
             context.beginPath()
             context.moveTo(pointer.x, pointer.y)
             context.lineTo(particle.x, particle.y)
-            context.strokeStyle = color(primary, (1 - pointerDistance / POINTER_RADIUS) * 0.11)
-            context.lineWidth = 0.5
+            context.strokeStyle = color(primary, (1 - pointerDistance / POINTER_RADIUS) * 0.2)
+            context.lineWidth = 0.65
             context.stroke()
           }
         }
 
-        context.beginPath()
-        context.moveTo(particle.x - directionX * trail, particle.y - directionY * trail)
-        context.quadraticCurveTo(
-          particle.x - directionY * 2.5,
-          particle.y + directionX * 2.5,
-          particle.x + directionX * 2,
-          particle.y + directionY * 2,
-        )
+        const nodeSize = (1.45 + particle.size) * particle.depth
+
+        context.save()
+        context.translate(particle.x, particle.y)
+        context.rotate(particle.angle * 0.35)
         context.strokeStyle = color(
           particleColor,
-          (particle.accent ? 0.58 : 0.25) * particle.depth,
+          (particle.accent ? 0.96 : 0.72) * particle.depth,
         )
-        context.lineWidth = (particle.accent ? 1.2 : 0.75) * particle.depth
-        context.stroke()
-
-        context.beginPath()
-        context.arc(particle.x, particle.y, particle.size * particle.depth, 0, Math.PI * 2)
         context.fillStyle = color(
           particleColor,
-          (particle.accent ? 0.92 : 0.58) * particle.depth,
+          (particle.accent ? 0.94 : 0.68) * particle.depth,
         )
-        context.fill()
+        context.lineWidth = particle.accent ? 1.15 : 0.75
+
+        if (particle.accent) {
+          context.shadowColor = color(primary, 0.55)
+          context.shadowBlur = 7
+        }
+
+        if (particle.shape === 0) {
+          context.fillRect(-nodeSize / 2, -nodeSize / 2, nodeSize, nodeSize)
+        } else if (particle.shape === 1) {
+          context.rotate(Math.PI / 4)
+          context.strokeRect(-nodeSize, -nodeSize, nodeSize * 2, nodeSize * 2)
+        } else if (particle.shape === 2) {
+          context.beginPath()
+          context.arc(0, 0, nodeSize, 0, Math.PI * 2)
+          context.stroke()
+        } else if (particle.shape === 3) {
+          context.beginPath()
+          context.moveTo(-nodeSize * 1.3, 0)
+          context.lineTo(nodeSize * 1.3, 0)
+          context.moveTo(0, -nodeSize * 1.3)
+          context.lineTo(0, nodeSize * 1.3)
+          context.stroke()
+        } else {
+          context.beginPath()
+          context.moveTo(0, -nodeSize * 1.25)
+          context.lineTo(nodeSize * 1.1, nodeSize)
+          context.lineTo(-nodeSize * 1.1, nodeSize)
+          context.closePath()
+          context.stroke()
+        }
+
+        context.restore()
       }
     }
 

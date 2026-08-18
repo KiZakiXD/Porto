@@ -30,19 +30,19 @@ export default function UtcClock() {
   const isoDate = current?.toISOString()
 
   return (
-    <div className="utc-clock border-t border-border py-4 lg:min-w-[20rem] lg:border-l lg:border-t-0 lg:pl-6">
-      <div className="mb-2.5 flex items-center justify-between font-mono text-[0.56rem] font-semibold uppercase tracking-[0.16em] text-muted-foreground">
-        <span>UTC / Live signal</span>
-        <span className="flex items-center gap-1.5 text-foreground">
-          <span className="utc-live-dot h-1.5 w-1.5 rounded-full bg-primary" aria-hidden="true" />
-          Online
+    <div className="utc-clock w-[9.75rem] border border-border bg-background/80 p-2.5 shadow-[4px_4px_0_hsl(var(--border)/0.22)] backdrop-blur-sm">
+      <div className="mb-1.5 flex items-center justify-between font-mono text-[0.48rem] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+        <span>UTC +00</span>
+        <span className="flex items-center gap-1 text-foreground">
+          <span className="utc-live-dot h-1 w-1 rounded-full bg-primary" aria-hidden="true" />
+          Live
         </span>
       </div>
 
       <time
         dateTime={isoDate}
         aria-label={current ? `UTC time ${hours}:${minutes}:${seconds}, ${date}` : "Loading UTC time"}
-        className="grid grid-cols-[1fr_auto_1fr_auto_1fr] items-stretch"
+        className="grid grid-cols-[1fr_auto_1fr_auto_1fr] items-center"
       >
         {[
           ["HH", hours],
@@ -51,15 +51,12 @@ export default function UtcClock() {
         ].map(([label, value], index) => (
           <div key={label} className="contents">
             {index > 0 ? (
-              <span className="utc-colon grid w-4 place-items-center font-mono text-lg text-primary" aria-hidden="true">
+              <span className="utc-colon grid w-2.5 place-items-center font-mono text-sm text-primary" aria-hidden="true">
                 :
               </span>
             ) : null}
-            <span className="grid min-h-12 grid-cols-[auto_1fr] items-center border border-border bg-background/70 px-2.5">
-              <span className="self-start pt-1.5 font-mono text-[0.48rem] font-semibold tracking-[0.1em] text-muted-foreground">
-                {label}
-              </span>
-              <span className="justify-self-end font-mono text-[1.55rem] font-semibold leading-none tracking-[-0.08em] tabular-nums">
+            <span className="grid h-8 min-w-8 place-items-center border border-border bg-card/80">
+              <span className="font-mono text-sm font-semibold leading-none tracking-[-0.06em] tabular-nums">
                 {value}
               </span>
             </span>
@@ -67,8 +64,8 @@ export default function UtcClock() {
         ))}
       </time>
 
-      <div className="mt-2 flex items-center justify-between border-t border-border pt-2 font-mono text-[0.55rem] uppercase tracking-[0.14em] text-muted-foreground">
-        <span>Date / UTC+00</span>
+      <div className="mt-1.5 flex items-center justify-between border-t border-border pt-1.5 font-mono text-[0.45rem] uppercase tracking-[0.1em] text-muted-foreground">
+        <span>Date</span>
         <span className="text-foreground tabular-nums">{date}</span>
       </div>
     </div>

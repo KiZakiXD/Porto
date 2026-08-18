@@ -195,7 +195,7 @@ h3,
   z-index: 0;
   width: 100vw;
   height: 100svh;
-  opacity: 0.82;
+  opacity: 0.96;
   pointer-events: none;
   transform: translateZ(0);
   will-change: opacity;
@@ -325,7 +325,7 @@ h3,
   }
 
   .reactive-particle-field {
-    opacity: 0.72;
+    opacity: 0.9;
   }
 
   .display-outline,
@@ -355,6 +355,6 @@ h3,
   }
 
   .reactive-particle-field {
-    opacity: 0.34;
+    opacity: 0.42;
   }
 }

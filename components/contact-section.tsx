@@ -25,7 +25,7 @@ export default function ContactSection() {
   }
 
   return (
-    <section id="contact" className="section-shell bg-card/80 py-20 md:py-28">
+    <section id="contact" className="section-shell bg-card/70 py-20 md:py-28">
       <div className="container">
         <div className="grid gap-12 lg:grid-cols-[0.88fr_1.12fr] lg:gap-20">
           <div>

@@ -10,18 +10,19 @@ export default function HeroSection() {
   return (
     <section id="home" className="editorial-grid relative overflow-hidden bg-transparent pt-16">
       <div className="container relative z-10 flex min-h-[calc(100svh-4rem)] flex-col">
-        <div className="grid border-b border-border lg:grid-cols-[1fr_auto] lg:items-stretch">
-          <div className="meta-copy flex flex-col justify-center gap-3 py-5 text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-muted-foreground sm:flex-row sm:items-center sm:justify-between lg:pr-6">
-            <span className="flex items-center gap-2.5 text-foreground">
-              <span className="h-2 w-2 rounded-full bg-primary" />
-              Available for selected projects
-            </span>
-            <span>AI · Security · Onchain</span>
-          </div>
-          <UtcClock />
+        <div className="meta-copy flex flex-col gap-3 border-b border-border py-5 text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
+          <span className="flex items-center gap-2.5 text-foreground">
+            <span className="h-2 w-2 rounded-full bg-primary" />
+            Available for selected projects
+          </span>
+          <span>AI · Security · Onchain</span>
         </div>
 
-        <div className="grid flex-1 items-center gap-8 py-12 lg:grid-cols-[5rem_1fr] lg:py-16">
+        <div className="relative grid flex-1 items-center gap-8 py-12 lg:grid-cols-[5rem_1fr] lg:py-16">
+          <div className="absolute right-0 top-5 z-20 sm:top-7">
+            <UtcClock />
+          </div>
+
           <div className="meta-copy hidden h-full items-center justify-center border-r border-border text-[0.65rem] uppercase tracking-[0.22em] text-muted-foreground lg:flex">
             <span className="[writing-mode:vertical-rl]">Portfolio / Volume 26</span>
           </div>
@@ -29,14 +30,14 @@ export default function HeroSection() {
           <div>
             <p className="section-kicker mb-7">Aldi Zakia Pratama / AI · Security · Onchain</p>
             <h1
-              className="display-title text-[clamp(3.7rem,16.4vw,10.5rem)]"
-              aria-label="Code with character. Built to work."
+              className="display-title text-[clamp(3.25rem,14.5vw,10.5rem)]"
+              aria-label="I build across AI, security, and onchain."
             >
-              <span className="type-reveal block" style={{ animationDelay: "80ms" }}>Code with</span>
-              <span className="type-reveal display-italic block text-primary" style={{ animationDelay: "160ms" }}>character.</span>
-              <span className="type-reveal mt-[0.08em] block text-right" style={{ animationDelay: "240ms" }}>Built to</span>
+              <span className="type-reveal block" style={{ animationDelay: "80ms" }}>I build</span>
+              <span className="type-reveal display-italic block text-primary" style={{ animationDelay: "160ms" }}>across AI,</span>
+              <span className="type-reveal mt-[0.08em] block text-right" style={{ animationDelay: "240ms" }}>security &amp;</span>
               <span className="type-reveal block text-right" style={{ animationDelay: "320ms" }}>
-                <span className="kinetic-outline display-outline block">work.</span>
+                <span className="kinetic-outline display-outline block">onchain.</span>
               </span>
             </h1>
           </div>

@@ -112,7 +112,7 @@ function CollaborationMark({ kind }: { kind: CollaborationKind }) {
 
 export default function SkillsSection() {
   return (
-    <section id="skills" className="section-shell bg-card/80 py-20 md:py-28">
+    <section id="skills" className="section-shell bg-card/70 py-20 md:py-28">
       <div className="container">
         <div className="grid gap-8 border-b border-border pb-10 lg:grid-cols-[auto_1fr] lg:gap-16">
           <p className="section-kicker pt-2">02 / Capabilities</p>
@@ -179,7 +179,7 @@ export default function SkillsSection() {
             {collaborations.map((collaboration, index) => (
               <article
                 key={collaboration.name}
-                className={`collaboration-card group relative min-h-44 overflow-hidden border-b border-r border-border bg-background/80 p-4 md:min-h-52 md:p-6 ${
+                className={`collaboration-card group relative min-h-44 overflow-hidden border-b border-r border-border bg-background/70 p-4 md:min-h-52 md:p-6 ${
                   collaboration.featured ? "col-span-2" : ""
                 }`}
               >
