@@ -30,16 +30,15 @@ const collaborations: Array<{
   name: string
   detail: string
   kind: CollaborationKind
-  monogram: string
   featured?: boolean
 }> = [
-  { name: "DeepSeek", detail: "AI development", kind: "deepseek", monogram: "DS" },
-  { name: "AWS", detail: "Cloud & AI", kind: "aws", monogram: "AWS" },
-  { name: "Base", detail: "Onchain products", kind: "base", monogram: "BASE" },
-  { name: "Robinhood Chain", detail: "Onchain products", kind: "robinhood", monogram: "RHC" },
-  { name: "Google for Developers", detail: "Developer collaboration", kind: "google", monogram: "GDEV" },
-  { name: "Alibaba Cloud", detail: "Cloud & AI", kind: "alibaba", monogram: "ALI" },
-  { name: "Xiaomi", detail: "AI development team", kind: "xiaomi", monogram: "MI", featured: true },
+  { name: "DeepSeek", detail: "AI development", kind: "deepseek" },
+  { name: "AWS", detail: "Cloud & AI", kind: "aws" },
+  { name: "Base", detail: "Onchain products", kind: "base" },
+  { name: "Robinhood Chain", detail: "Onchain products", kind: "robinhood" },
+  { name: "Google for Developers", detail: "Developer collaboration", kind: "google" },
+  { name: "Alibaba Cloud", detail: "Cloud & AI", kind: "alibaba" },
+  { name: "Xiaomi", detail: "AI development team", kind: "xiaomi", featured: true },
 ]
 
 function CollaborationMark({ kind }: { kind: CollaborationKind }) {
@@ -100,13 +99,14 @@ function CollaborationMark({ kind }: { kind: CollaborationKind }) {
   }
 
   return (
-    <svg viewBox="0 0 32 32" className="h-9 w-9" aria-hidden="true">
-      <rect x="1" y="1" width="30" height="30" rx="9" fill="#ff6900" />
-      <path
-        fill="white"
-        d="M6.5 9.5h10.4c3.8 0 5.9 2 5.9 5.8v7.2h-3.9v-6.8c0-1.7-.8-2.4-2.4-2.4h-.6v9.2h-3.6v-9.2h-2v9.2H6.5v-13ZM25 9.5h2.5v13H25z"
-      />
-    </svg>
+    <Image
+      src="/images/xiaomi-logo.jpg"
+      alt=""
+      width={48}
+      height={48}
+      className="h-10 w-10 rounded-[25%] object-cover"
+      aria-hidden="true"
+    />
   )
 }
 
@@ -175,28 +175,27 @@ export default function SkillsSection() {
             </div>
           </div>
 
-          <div className="grid border-l border-t border-border sm:grid-cols-2 xl:grid-cols-4">
+          <div className="grid grid-cols-2 border-l border-t border-border xl:grid-cols-4">
             {collaborations.map((collaboration, index) => (
               <article
                 key={collaboration.name}
-                className={`collaboration-card group relative min-h-48 overflow-hidden border-b border-r border-border bg-background p-5 md:min-h-56 md:p-6 ${
-                  collaboration.featured ? "sm:col-span-2" : ""
+                className={`collaboration-card group relative min-h-44 overflow-hidden border-b border-r border-border bg-background p-4 md:min-h-52 md:p-6 ${
+                  collaboration.featured ? "col-span-2" : ""
                 }`}
               >
-                <span className="collaboration-ghost" aria-hidden="true">
-                  {collaboration.monogram}
-                </span>
                 <div className="relative z-10 flex items-start justify-between">
                   <span className="font-mono text-[0.62rem] text-muted-foreground">[0{index + 1}]</span>
-                  <div className="flex h-14 w-14 items-center justify-center border border-border bg-card transition duration-300 group-hover:-rotate-3 group-hover:border-primary group-hover:shadow-[4px_4px_0_hsl(var(--primary))]">
+                  <div className="flex h-12 w-12 items-center justify-center border border-border bg-card transition duration-300 group-hover:-rotate-3 group-hover:border-primary group-hover:shadow-[4px_4px_0_hsl(var(--primary))] md:h-14 md:w-14">
                     <CollaborationMark kind={collaboration.kind} />
                   </div>
                 </div>
 
-                <div className="relative z-10 mt-14 md:mt-16">
+                <div className="relative z-10 mt-10 md:mt-14">
                   <h4
                     className={`font-semibold leading-[0.95] tracking-[-0.05em] ${
-                      collaboration.featured ? "text-4xl md:text-5xl" : "text-2xl md:text-3xl"
+                      collaboration.featured
+                        ? "text-3xl md:text-5xl"
+                        : "text-[clamp(1.2rem,2.4vw,1.875rem)]"
                     }`}
                   >
                     {collaboration.name}
