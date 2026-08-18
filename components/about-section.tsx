@@ -21,17 +21,33 @@ export default function AboutSection() {
 
         <div className="mt-10 border-b border-border pb-12 lg:pb-16">
           <div className="grid grid-cols-[minmax(0,0.7fr)_minmax(0,1.3fr)] items-stretch gap-5 border-b border-border pb-10 sm:gap-8 lg:grid-cols-[19rem_minmax(0,1fr)] lg:gap-16">
-            <figure className="self-start">
-              <div className="relative overflow-hidden border border-border bg-card">
+            <figure className="relative self-start p-2">
+              <span
+                className="pointer-events-none absolute left-0 top-0 h-12 w-12 border-l-2 border-t-2 border-primary"
+                aria-hidden="true"
+              />
+              <span
+                className="pointer-events-none absolute bottom-0 right-0 h-12 w-12 border-b-2 border-r-2 border-primary"
+                aria-hidden="true"
+              />
+
+              <div className="group relative overflow-hidden border border-border bg-card shadow-[6px_6px_0_hsl(var(--primary)/0.16)]">
                 <Image
                   src="/images/profile-real.jpeg"
                   alt="Aldi Zakia Pratama"
                   width={960}
                   height={1200}
                   sizes="(min-width: 1024px) 19rem, 35vw"
-                  className="aspect-[4/5] w-full object-cover object-[58%_50%] grayscale transition duration-500 hover:grayscale-0"
+                  className="aspect-[4/5] w-full object-cover object-[58%_50%] grayscale contrast-[1.08] transition duration-700 group-hover:scale-[1.025] group-hover:grayscale-0"
                 />
-                <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-background/80 to-transparent" aria-hidden="true" />
+                <div className="absolute inset-0 bg-primary/[0.08] mix-blend-color" aria-hidden="true" />
+                <div className="about-photo-scan absolute inset-0" aria-hidden="true" />
+                <div className="absolute inset-2 border border-white/15" aria-hidden="true" />
+                <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/55 to-transparent" aria-hidden="true" />
+                <span className="absolute left-0 top-0 bg-foreground px-2.5 py-1.5 font-mono text-[0.55rem] font-semibold tracking-[0.12em] text-background">
+                  01
+                </span>
+                <span className="absolute bottom-3 left-3 h-px w-10 bg-primary" aria-hidden="true" />
                 <span className="absolute inset-y-0 right-0 w-1 bg-primary" aria-hidden="true" />
               </div>
             </figure>

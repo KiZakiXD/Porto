@@ -210,6 +210,29 @@ h3,
   animation: utc-colon-blink 1s steps(1, end) infinite;
 }
 
+.about-photo-scan {
+  pointer-events: none;
+  opacity: 0.32;
+  background:
+    repeating-linear-gradient(
+      180deg,
+      transparent 0,
+      transparent 5px,
+      hsl(0 0% 100% / 0.11) 6px
+    ),
+    linear-gradient(115deg, hsl(var(--primary) / 0.24), transparent 42%);
+  mix-blend-mode: overlay;
+}
+
+.about-photo-scan::after {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 18%;
+  content: "";
+  background: linear-gradient(180deg, transparent, hsl(var(--primary) / 0.3), transparent);
+  animation: about-photo-scan 5.8s ease-in-out infinite;
+}
+
 .kinetic-outline {
   animation: outline-pulse 5.5s ease-in-out 1.2s infinite alternate;
 }
@@ -266,6 +289,22 @@ h3,
 @keyframes utc-colon-blink {
   50% {
     opacity: 0.25;
+  }
+}
+
+@keyframes about-photo-scan {
+  0%,
+  18% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  35% {
+    opacity: 0.5;
+  }
+  65%,
+  100% {
+    opacity: 0;
+    transform: translateY(555%);
   }
 }
 
