@@ -8,7 +8,7 @@ const facts = [
 
 export default function AboutSection() {
   return (
-    <section id="about" className="section-shell bg-background py-20 md:py-28">
+    <section id="about" className="section-shell bg-background/75 py-20 md:py-28">
       <div className="container">
         <div className="grid gap-8 border-b border-border pb-10 lg:grid-cols-[auto_1fr] lg:gap-16">
           <p className="section-kicker pt-2">01 / Profile</p>

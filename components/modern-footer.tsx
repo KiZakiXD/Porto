@@ -12,7 +12,7 @@ export default function ModernFooter() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="section-shell overflow-hidden bg-foreground text-background">
+    <footer data-particle-boundary className="section-shell relative z-20 overflow-hidden bg-foreground text-background">
       <div className="container py-10 md:py-12">
         <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
           <p className="max-w-md text-sm leading-6 text-background/60">

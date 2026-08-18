@@ -65,7 +65,7 @@ export default function Navbar() {
             className="font-mono text-sm font-semibold uppercase tracking-[-0.045em] transition-opacity hover:opacity-60"
             aria-label="Back to home"
           >
-            KIZAKIXD<span className="text-primary">.</span>
+            KIZAKIXD
           </button>
 
           <div className="hidden items-center gap-7 md:flex">

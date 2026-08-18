@@ -38,7 +38,7 @@ const collaborations: Array<{
   { name: "Robinhood Chain", detail: "Onchain products", kind: "robinhood" },
   { name: "Google for Developers", detail: "Developer collaboration", kind: "google" },
   { name: "Alibaba Cloud", detail: "Cloud & AI", kind: "alibaba" },
-  { name: "Xiaomi", detail: "AI development team", kind: "xiaomi", featured: true },
+  { name: "Xiaomi MiMo", detail: "AI model development team", kind: "xiaomi", featured: true },
 ]
 
 function CollaborationMark({ kind }: { kind: CollaborationKind }) {
@@ -100,11 +100,11 @@ function CollaborationMark({ kind }: { kind: CollaborationKind }) {
 
   return (
     <Image
-      src="/images/xiaomi-logo.jpg"
+      src="/images/xiaomi-mimo-logo.jpg"
       alt=""
-      width={48}
-      height={48}
-      className="h-10 w-10 rounded-[25%] object-cover"
+      width={384}
+      height={49}
+      className="h-auto w-full object-contain brightness-150"
       aria-hidden="true"
     />
   )
@@ -112,7 +112,7 @@ function CollaborationMark({ kind }: { kind: CollaborationKind }) {
 
 export default function SkillsSection() {
   return (
-    <section id="skills" className="section-shell bg-card py-20 md:py-28">
+    <section id="skills" className="section-shell bg-card/80 py-20 md:py-28">
       <div className="container">
         <div className="grid gap-8 border-b border-border pb-10 lg:grid-cols-[auto_1fr] lg:gap-16">
           <p className="section-kicker pt-2">02 / Capabilities</p>
@@ -161,7 +161,7 @@ export default function SkillsSection() {
             <div>
               <p className="section-kicker">02B / Collaboration history</p>
               <p className="mt-5 max-w-sm font-mono text-[0.65rem] uppercase leading-5 tracking-[0.12em] text-muted-foreground">
-                Selected teams across AI, cloud, developer platforms, and onchain products.
+                Selected teams across AI model development, cloud, developer platforms, and onchain products.
               </p>
             </div>
             <div>
@@ -179,13 +179,19 @@ export default function SkillsSection() {
             {collaborations.map((collaboration, index) => (
               <article
                 key={collaboration.name}
-                className={`collaboration-card group relative min-h-44 overflow-hidden border-b border-r border-border bg-background p-4 md:min-h-52 md:p-6 ${
+                className={`collaboration-card group relative min-h-44 overflow-hidden border-b border-r border-border bg-background/80 p-4 md:min-h-52 md:p-6 ${
                   collaboration.featured ? "col-span-2" : ""
                 }`}
               >
                 <div className="relative z-10 flex items-start justify-between">
                   <span className="font-mono text-[0.62rem] text-muted-foreground">[0{index + 1}]</span>
-                  <div className="flex h-12 w-12 items-center justify-center border border-border bg-card transition duration-300 group-hover:-rotate-3 group-hover:border-primary group-hover:shadow-[4px_4px_0_hsl(var(--primary))] md:h-14 md:w-14">
+                  <div
+                    className={`flex items-center justify-center border border-border transition duration-300 group-hover:border-primary group-hover:shadow-[4px_4px_0_hsl(var(--primary))] ${
+                      collaboration.kind === "xiaomi"
+                        ? "h-12 w-40 bg-black px-3 group-hover:-rotate-1 md:h-14 md:w-48"
+                        : "h-12 w-12 bg-card group-hover:-rotate-3 md:h-14 md:w-14"
+                    }`}
+                  >
                     <CollaborationMark kind={collaboration.kind} />
                   </div>
                 </div>

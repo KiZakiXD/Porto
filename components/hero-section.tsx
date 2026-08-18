@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { ArrowDownRight, ArrowUpRight } from "lucide-react"
-import ReactiveParticleField from "@/components/reactive-particle-field"
+import UtcClock from "@/components/utc-clock"
 
 const tickerItems = ["AI development", "Security research", "Automation", "Onchain products"]
 
@@ -8,16 +8,17 @@ export default function HeroSection() {
   const ticker = [...tickerItems, ...tickerItems]
 
   return (
-    <section id="home" className="editorial-grid relative isolate overflow-hidden bg-background pt-16">
-      <ReactiveParticleField />
-
+    <section id="home" className="editorial-grid relative overflow-hidden bg-transparent pt-16">
       <div className="container relative z-10 flex min-h-[calc(100svh-4rem)] flex-col">
-        <div className="meta-copy flex flex-col gap-3 border-b border-border py-5 text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
-          <span className="flex items-center gap-2.5 text-foreground">
-            <span className="h-2 w-2 rounded-full bg-primary" />
-            Available for selected projects
-          </span>
-          <span>AI · Security · Onchain</span>
+        <div className="grid border-b border-border lg:grid-cols-[1fr_auto] lg:items-stretch">
+          <div className="meta-copy flex flex-col justify-center gap-3 py-5 text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-muted-foreground sm:flex-row sm:items-center sm:justify-between lg:pr-6">
+            <span className="flex items-center gap-2.5 text-foreground">
+              <span className="h-2 w-2 rounded-full bg-primary" />
+              Available for selected projects
+            </span>
+            <span>AI · Security · Onchain</span>
+          </div>
+          <UtcClock />
         </div>
 
         <div className="grid flex-1 items-center gap-8 py-12 lg:grid-cols-[5rem_1fr] lg:py-16">

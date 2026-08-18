@@ -1,6 +1,6 @@
 export default function ProjectsSection() {
   return (
-    <section id="projects" className="section-shell bg-background py-20 md:py-28">
+    <section id="projects" className="section-shell bg-background/75 py-20 md:py-28">
       <div className="container">
         <div className="border-b border-border pb-10">
           <p className="section-kicker">03 / Selected work</p>
