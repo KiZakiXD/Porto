@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Menu, X } from "lucide-react"
 import { ThemeToggle } from "@/components/theme-toggle"
 
@@ -15,6 +15,7 @@ const navLinks = [
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState("home")
+  const firstMobileLinkRef = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,16 +37,36 @@ export default function Navbar() {
   }, [])
 
   useEffect(() => {
-    document.body.style.overflow = isMenuOpen ? "hidden" : ""
+    if (!isMenuOpen) return
+
+    const body = document.body
+    const previousOverflow = body.style.overflow
+    const previousPaddingRight = body.style.paddingRight
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth
+    const desktopQuery = window.matchMedia("(min-width: 768px)")
+
+    body.style.overflow = "hidden"
+    if (scrollbarWidth > 0) body.style.paddingRight = `${scrollbarWidth}px`
+
+    const focusFrame = window.requestAnimationFrame(() => firstMobileLinkRef.current?.focus())
 
     const closeOnEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") setIsMenuOpen(false)
     }
 
+    const closeOnDesktop = (event: MediaQueryListEvent) => {
+      if (event.matches) setIsMenuOpen(false)
+    }
+
     window.addEventListener("keydown", closeOnEscape)
+    desktopQuery.addEventListener("change", closeOnDesktop)
+
     return () => {
-      document.body.style.overflow = ""
+      window.cancelAnimationFrame(focusFrame)
+      body.style.overflow = previousOverflow
+      body.style.paddingRight = previousPaddingRight
       window.removeEventListener("keydown", closeOnEscape)
+      desktopQuery.removeEventListener("change", closeOnDesktop)
     }
   }, [isMenuOpen])
 
@@ -109,7 +130,7 @@ export default function Navbar() {
       {isMenuOpen ? (
         <nav
           id="mobile-navigation"
-          className="editorial-grid fixed inset-x-0 bottom-0 top-16 overflow-y-auto bg-background md:hidden"
+          className="editorial-grid fixed inset-x-0 bottom-0 top-16 z-40 overflow-y-auto overscroll-contain bg-background md:hidden"
           aria-label="Mobile navigation"
         >
           <div className="container flex min-h-full flex-col justify-between py-5">
@@ -121,6 +142,7 @@ export default function Navbar() {
                   <button
                     type="button"
                     key={link.section}
+                    ref={index === 0 ? firstMobileLinkRef : undefined}
                     onClick={() => goTo(link.href, link.section)}
                     className="group flex w-full items-baseline justify-between border-b border-border py-2.5 text-left"
                   >
