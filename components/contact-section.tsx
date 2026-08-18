@@ -5,8 +5,7 @@ import { useState } from "react"
 import { ArrowUpRight, Mail, MessageCircle } from "lucide-react"
 
 const email = "aldizakiapratama@gmail.com"
-const whatsappNumber = "+1 (581) 259-2235"
-const whatsappUrl = "https://wa.me/15812592235?text=Hi%20Aldi%2C%20I%20found%20your%20portfolio."
+const whatsappUrl = "https://wa.me/+15812592235"
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({ name: "", email: "", subject: "", message: "" })
@@ -31,10 +30,10 @@ export default function ContactSection() {
         <div className="grid gap-12 lg:grid-cols-[0.88fr_1.12fr] lg:gap-20">
           <div>
             <p className="section-kicker">04 / Contact</p>
-            <h2 className="display-title mt-7 text-[clamp(3.6rem,7.5vw,7rem)]">
+            <h2 className="display-title mt-7 text-[clamp(3rem,7.5vw,7rem)]">
               <span className="block">Let&apos;s make</span>
               <span className="display-outline block">something</span>
-              <span className="display-italic block text-right text-primary">useful.</span>
+              <span className="display-italic block pl-[0.65em] text-primary sm:pl-[1em]">useful.</span>
             </h2>
             <p className="mt-8 max-w-xl text-base leading-7 text-muted-foreground md:text-lg">
               Send the context directly from the form, or reach out through email and WhatsApp. Clear briefs are very
@@ -46,7 +45,7 @@ export default function ContactSection() {
                 href={`mailto:${email}`}
                 className="group flex items-center justify-between border-b border-border py-5 hover:text-primary"
               >
-                <span className="flex items-center gap-3"><Mail className="h-4 w-4" /> {email}</span>
+                <span className="flex items-center gap-3"><Mail className="h-4 w-4" /> Email</span>
                 <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
               </a>
               <a
@@ -55,9 +54,7 @@ export default function ContactSection() {
                 rel="noreferrer"
                 className="group flex items-center justify-between border-b border-border py-5 hover:text-primary"
               >
-                <span className="flex items-center gap-3">
-                  <MessageCircle className="h-4 w-4" /> {whatsappNumber}
-                </span>
+                <span className="flex items-center gap-3"><MessageCircle className="h-4 w-4" /> WhatsApp</span>
                 <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
               </a>
             </div>

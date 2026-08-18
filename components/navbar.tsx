@@ -112,7 +112,7 @@ export default function Navbar() {
           className="editorial-grid fixed inset-x-0 bottom-0 top-16 overflow-y-auto bg-background md:hidden"
           aria-label="Mobile navigation"
         >
-          <div className="container flex min-h-full flex-col justify-between py-7">
+          <div className="container flex min-h-full flex-col justify-between py-5">
             <div>
               {navLinks.map((link, index) => {
                 const isActive = activeSection === link.section
@@ -122,10 +122,10 @@ export default function Navbar() {
                     type="button"
                     key={link.section}
                     onClick={() => goTo(link.href, link.section)}
-                    className="group flex w-full items-baseline justify-between border-b border-border py-3 text-left"
+                    className="group flex w-full items-baseline justify-between border-b border-border py-2.5 text-left"
                   >
                     <span
-                      className={`display-title text-[clamp(2.8rem,13.5vw,5rem)] transition-colors ${
+                      className={`display-title text-[clamp(2rem,9.5vw,3rem)] transition-colors ${
                         isActive ? "text-primary" : "group-hover:text-primary"
                       }`}
                     >
