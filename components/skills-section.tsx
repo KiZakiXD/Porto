@@ -24,13 +24,20 @@ const groups = [
   },
 ]
 
-type CollaborationKind = "deepseek" | "aws" | "base" | "robinhood" | "google" | "alibaba" | "xiaomi"
+type CollaborationKind =
+  | "deepseek"
+  | "aws"
+  | "base"
+  | "robinhood"
+  | "google"
+  | "alibaba"
+  | "xiaomi-mimo"
+  | "xiaomi"
 
 const collaborations: Array<{
   name: string
   detail: string
   kind: CollaborationKind
-  featured?: boolean
 }> = [
   { name: "DeepSeek", detail: "AI development", kind: "deepseek" },
   { name: "AWS", detail: "Cloud & AI", kind: "aws" },
@@ -38,7 +45,8 @@ const collaborations: Array<{
   { name: "Robinhood Chain", detail: "Onchain products", kind: "robinhood" },
   { name: "Google for Developers", detail: "Developer collaboration", kind: "google" },
   { name: "Alibaba Cloud", detail: "Cloud & AI", kind: "alibaba" },
-  { name: "Xiaomi MiMo", detail: "AI model development team", kind: "xiaomi", featured: true },
+  { name: "Xiaomi AI / MiMo", detail: "AI model development", kind: "xiaomi-mimo" },
+  { name: "Xiaomi", detail: "IT support", kind: "xiaomi" },
 ]
 
 function CollaborationMark({ kind }: { kind: CollaborationKind }) {
@@ -98,13 +106,39 @@ function CollaborationMark({ kind }: { kind: CollaborationKind }) {
     )
   }
 
+  if (kind === "xiaomi-mimo") {
+    return (
+      <svg viewBox="0 0 1536 196" className="h-auto w-full text-foreground" aria-hidden="true">
+        <defs>
+          <filter id="mimo-wordmark-contrast" x="0" y="0" width="100%" height="100%">
+            <feComponentTransfer>
+              <feFuncR type="linear" slope="4" />
+              <feFuncG type="linear" slope="4" />
+              <feFuncB type="linear" slope="4" />
+            </feComponentTransfer>
+          </filter>
+          <mask id="mimo-wordmark-mask" x="0" y="0" width="1536" height="196" maskUnits="userSpaceOnUse">
+            <image
+              href="/images/xiaomi-mimo-logo.jpg"
+              width="1536"
+              height="196"
+              preserveAspectRatio="xMidYMid meet"
+              filter="url(#mimo-wordmark-contrast)"
+            />
+          </mask>
+        </defs>
+        <rect width="1536" height="196" fill="currentColor" mask="url(#mimo-wordmark-mask)" />
+      </svg>
+    )
+  }
+
   return (
     <Image
-      src="/images/xiaomi-mimo-logo.jpg"
+      src="/images/xiaomi-logo.jpg"
       alt=""
-      width={384}
-      height={49}
-      className="h-auto w-full object-contain brightness-150"
+      width={48}
+      height={48}
+      className="h-10 w-10 rounded-[24%] object-cover"
       aria-hidden="true"
     />
   )
@@ -179,16 +213,14 @@ export default function SkillsSection() {
             {collaborations.map((collaboration, index) => (
               <article
                 key={collaboration.name}
-                className={`collaboration-card group relative min-h-44 overflow-hidden border-b border-r border-border bg-background/70 p-4 md:min-h-52 md:p-6 ${
-                  collaboration.featured ? "col-span-2" : ""
-                }`}
+                className="collaboration-card group relative min-h-44 overflow-hidden border-b border-r border-border bg-background/70 p-4 md:min-h-52 md:p-6"
               >
                 <div className="relative z-10 flex items-start justify-between">
                   <span className="font-mono text-[0.62rem] text-muted-foreground">[0{index + 1}]</span>
                   <div
                     className={`flex items-center justify-center border border-border transition duration-300 group-hover:border-primary group-hover:shadow-[4px_4px_0_hsl(var(--primary))] ${
-                      collaboration.kind === "xiaomi"
-                        ? "h-12 w-40 bg-black px-3 group-hover:-rotate-1 md:h-14 md:w-48"
+                      collaboration.kind === "xiaomi-mimo"
+                        ? "h-12 w-32 bg-card px-2.5 group-hover:-rotate-1 md:h-14 md:w-40"
                         : "h-12 w-12 bg-card group-hover:-rotate-3 md:h-14 md:w-14"
                     }`}
                   >
@@ -197,13 +229,7 @@ export default function SkillsSection() {
                 </div>
 
                 <div className="relative z-10 mt-10 md:mt-14">
-                  <h4
-                    className={`font-semibold leading-[0.95] tracking-[-0.05em] ${
-                      collaboration.featured
-                        ? "text-3xl md:text-5xl"
-                        : "text-[clamp(1.2rem,2.4vw,1.875rem)]"
-                    }`}
-                  >
+                  <h4 className="text-[clamp(1.2rem,2.4vw,1.875rem)] font-semibold leading-[0.95] tracking-[-0.05em]">
                     {collaboration.name}
                   </h4>
                   <p className="mt-3 font-mono text-[0.6rem] font-semibold uppercase tracking-[0.14em] text-muted-foreground transition-colors group-hover:text-primary">
