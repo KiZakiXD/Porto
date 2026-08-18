@@ -144,10 +144,10 @@ export default function Navbar() {
                     key={link.section}
                     ref={index === 0 ? firstMobileLinkRef : undefined}
                     onClick={() => goTo(link.href, link.section)}
-                    className="group flex w-full items-baseline justify-between border-b border-border py-2.5 text-left"
+                    className="group flex w-full items-baseline justify-between border-b border-border py-2 text-left"
                   >
                     <span
-                      className={`display-title text-[clamp(2rem,9.5vw,3rem)] transition-colors ${
+                      className={`display-title text-[clamp(1.75rem,8vw,2.65rem)] transition-colors ${
                         isActive ? "text-primary" : "group-hover:text-primary"
                       }`}
                     >

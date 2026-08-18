@@ -20,7 +20,7 @@ export default function AboutSection() {
         </div>
 
         <div className="mt-10 border-b border-border pb-12 lg:pb-16">
-          <div className="grid grid-cols-[minmax(0,0.7fr)_minmax(0,1.3fr)] items-stretch gap-5 border-b border-border pb-10 sm:gap-8 lg:grid-cols-[19rem_minmax(0,1fr)] lg:gap-16">
+          <div className="grid grid-cols-[minmax(0,0.7fr)_minmax(0,1.3fr)] items-stretch gap-5 border-b border-border pb-10 sm:gap-8 lg:grid-cols-[16rem_minmax(0,1fr)] lg:gap-12">
             <figure className="relative self-start p-2">
               <span
                 className="pointer-events-none absolute left-0 top-0 h-12 w-12 border-l-2 border-t-2 border-primary"
@@ -37,7 +37,7 @@ export default function AboutSection() {
                   alt="Aldi Zakia Pratama"
                   width={960}
                   height={1200}
-                  sizes="(min-width: 1024px) 19rem, 35vw"
+                  sizes="(min-width: 1024px) 16rem, 35vw"
                   className="aspect-[4/5] w-full object-cover object-[58%_50%] grayscale contrast-[1.08] transition duration-700 group-hover:scale-[1.025] group-hover:grayscale-0"
                 />
                 <div className="absolute inset-0 bg-primary/[0.08] mix-blend-color" aria-hidden="true" />
