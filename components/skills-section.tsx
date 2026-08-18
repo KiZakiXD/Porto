@@ -1,213 +1,257 @@
-"use client"
+import Image from "next/image"
+import { Feather } from "lucide-react"
 
-import { useEffect, useState } from "react"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Progress } from "@/components/ui/progress"
-import { Code, Palette, Database, Globe, Smartphone, Zap } from "lucide-react"
+const groups = [
+  {
+    title: "AI systems",
+    description: "Model integrations and workflows that turn repetitive work into useful, dependable systems.",
+    items: ["AI development", "AI automation", "AI learning", "Agents", "DeepSeek API", "Prompt systems"],
+  },
+  {
+    title: "Security research",
+    description: "Hands-on web security practice focused on finding, understanding, and reporting real weaknesses.",
+    items: ["Cybersecurity", "Bug bounty", "Recon", "Web security", "Vulnerability research", "Responsible disclosure"],
+  },
+  {
+    title: "Onchain development",
+    description: "Experimental products and automation for EVM, token, and memecoin communities.",
+    items: ["Memecoin tooling", "EVM", "Token workflows", "Base", "Robinhood Chain", "Team collaboration"],
+  },
+  {
+    title: "Web & infrastructure",
+    description: "The engineering layer that connects interfaces, APIs, automation, and deployment.",
+    items: ["Next.js", "TypeScript", "Node.js", "Python", "PHP", "REST APIs", "AWS", "Alibaba Cloud", "Git"],
+  },
+]
 
-export default function SkillsSection() {
-  const [isVisible, setIsVisible] = useState(false)
+type CollaborationKind =
+  | "deepseek"
+  | "aws"
+  | "base"
+  | "robinhood"
+  | "google"
+  | "alibaba"
+  | "xiaomi-mimo"
+  | "xiaomi"
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true)
-          }
-        })
-      },
-      { threshold: 0.1 },
+const collaborations: Array<{
+  name: string
+  detail: string
+  kind: CollaborationKind
+}> = [
+  { name: "DeepSeek", detail: "AI development", kind: "deepseek" },
+  { name: "AWS", detail: "Cloud & AI", kind: "aws" },
+  { name: "Base", detail: "Onchain products", kind: "base" },
+  { name: "Robinhood Chain", detail: "Onchain products", kind: "robinhood" },
+  { name: "Google for Developers", detail: "Developer collaboration", kind: "google" },
+  { name: "Alibaba Cloud", detail: "Cloud & AI", kind: "alibaba" },
+  { name: "Xiaomi AI / MiMo", detail: "AI model development", kind: "xiaomi-mimo" },
+  { name: "Xiaomi", detail: "IT support", kind: "xiaomi" },
+]
+
+function CollaborationMark({ kind }: { kind: CollaborationKind }) {
+  if (kind === "deepseek") {
+    return (
+      <Image
+        src="/images/deepseek-logo.jpg"
+        alt=""
+        width={48}
+        height={48}
+        className="h-10 w-10 rounded-[24%] object-cover"
+        aria-hidden="true"
+      />
     )
+  }
 
-    const section = document.getElementById("skills")
-    if (section) {
-      observer.observe(section)
-    }
+  if (kind === "aws") {
+    return (
+      <svg viewBox="0 0 52 32" className="h-8 w-11" aria-hidden="true">
+        <text x="4" y="20" fill="currentColor" fontFamily="Arial, sans-serif" fontSize="17" fontWeight="700">
+          aws
+        </text>
+        <path d="M9 24c9 5 21 5 31 0" fill="none" stroke="#ff9900" strokeWidth="2" strokeLinecap="round" />
+        <path d="m37 22 4 1-2 4" fill="none" stroke="#ff9900" strokeWidth="2" strokeLinecap="round" />
+      </svg>
+    )
+  }
 
-    return () => {
-      if (section) {
-        observer.unobserve(section)
-      }
-    }
-  }, [])
+  if (kind === "robinhood") return <Feather className="h-8 w-8 text-[#00c805]" aria-hidden="true" />
 
-  const skillCategories = [
-    {
-      icon: Code,
-      title: "Frontend Development",
-      color: "text-orange-500",
-      bgColor: "bg-orange-50 dark:bg-orange-900/20",
-      borderColor: "border-orange-200 dark:border-orange-800",
-      skills: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
-      percentage: 90,
-    },
-    {
-      icon: Database,
-      title: "Backend Development",
-      color: "text-purple-500",
-      bgColor: "bg-purple-50 dark:bg-purple-900/20",
-      borderColor: "border-purple-200 dark:border-purple-800",
-      skills: ["Node.js", "Express", "MongoDB", "PostgreSQL", "REST APIs"],
-      percentage: 85,
-    },
-    {
-      icon: Globe,
-      title: "Web3 & Blockchain",
-      color: "text-indigo-500",
-      bgColor: "bg-indigo-50 dark:bg-indigo-900/20",
-      borderColor: "border-indigo-200 dark:border-indigo-800",
-      skills: ["Ethereum", "Smart Contracts", "Web3.js", "DeFi", "NFTs"],
-      percentage: 75,
-    },
-    {
-      icon: Palette,
-      title: "UI/UX Design",
-      color: "text-teal-500",
-      bgColor: "bg-teal-50 dark:bg-teal-900/20",
-      borderColor: "border-teal-200 dark:border-teal-800",
-      skills: ["Figma", "Adobe XD", "Prototyping", "User Research", "Design Systems"],
-      percentage: 80,
-    },
-    {
-      icon: Smartphone,
-      title: "Mobile Development",
-      color: "text-pink-500",
-      bgColor: "bg-pink-50 dark:bg-pink-900/20",
-      borderColor: "border-pink-200 dark:border-pink-800",
-      skills: ["React Native", "Flutter", "iOS", "Android", "Cross-platform"],
-      percentage: 70,
-    },
-    {
-      icon: Zap,
-      title: "AI & Machine Learning",
-      color: "text-yellow-500",
-      bgColor: "bg-yellow-50 dark:bg-yellow-900/20",
-      borderColor: "border-yellow-200 dark:border-yellow-800",
-      skills: ["Python", "TensorFlow", "OpenAI API", "Computer Vision", "NLP", "DeepSeek", "Xiaomi"],
-      percentage: 65,
-    },
-  ]
+  if (kind === "google") {
+    return (
+      <svg viewBox="0 0 32 32" className="h-8 w-8" fill="none" aria-hidden="true">
+        <path d="M13 5 5 16" stroke="#4285f4" strokeWidth="3.2" strokeLinecap="round" />
+        <path d="m5 16 8 11" stroke="#ea4335" strokeWidth="3.2" strokeLinecap="round" />
+        <path d="m19 5 8 11" stroke="#fbbc04" strokeWidth="3.2" strokeLinecap="round" />
+        <path d="m27 16-8 11" stroke="#34a853" strokeWidth="3.2" strokeLinecap="round" />
+      </svg>
+    )
+  }
 
-  const tools = [
-    "VS Code",
-    "Git",
-    "Docker",
-    "AWS",
-    "Vercel",
-    "Figma",
-    "Postman",
-    "MongoDB Compass",
-    "Chrome DevTools",
-    "Notion",
-  ]
+  if (kind === "base") {
+    return (
+      <svg viewBox="0 0 32 32" className="h-8 w-8" aria-hidden="true">
+        <circle cx="16" cy="16" r="15" fill="#0052ff" />
+        <path d="M6.5 16h19" stroke="white" strokeWidth="3.2" />
+      </svg>
+    )
+  }
+
+  if (kind === "alibaba") {
+    return (
+      <svg viewBox="0 0 32 32" className="h-8 w-8" fill="none" aria-hidden="true">
+        <path d="M12 7H6v18h6M20 7h6v18h-6" stroke="#ff6a00" strokeWidth="3" strokeLinecap="round" />
+        <path d="M10 16h12" stroke="#ff6a00" strokeWidth="3" strokeLinecap="round" />
+      </svg>
+    )
+  }
+
+  if (kind === "xiaomi-mimo") {
+    return (
+      <svg viewBox="0 0 1536 196" className="h-auto w-full text-foreground" aria-hidden="true">
+        <defs>
+          <filter id="mimo-wordmark-contrast" x="0" y="0" width="100%" height="100%">
+            <feComponentTransfer>
+              <feFuncR type="linear" slope="4" />
+              <feFuncG type="linear" slope="4" />
+              <feFuncB type="linear" slope="4" />
+            </feComponentTransfer>
+          </filter>
+          <mask id="mimo-wordmark-mask" x="0" y="0" width="1536" height="196" maskUnits="userSpaceOnUse">
+            <image
+              href="/images/xiaomi-mimo-logo.jpg"
+              width="1536"
+              height="196"
+              preserveAspectRatio="xMidYMid meet"
+              filter="url(#mimo-wordmark-contrast)"
+            />
+          </mask>
+        </defs>
+        <rect width="1536" height="196" fill="currentColor" mask="url(#mimo-wordmark-mask)" />
+      </svg>
+    )
+  }
 
   return (
-    <section
-      id="skills"
-      className="py-24 bg-gradient-to-br from-indigo-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-indigo-900 relative overflow-hidden"
-    >
-      {/* Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 -left-20 w-40 h-40 bg-gradient-to-br from-orange-400/20 to-purple-600/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 -right-20 w-40 h-40 bg-gradient-to-bl from-indigo-400/20 to-teal-600/20 rounded-full blur-3xl" />
-      </div>
+    <svg viewBox="0 0 1536 1536" className="h-10 w-10" aria-hidden="true">
+      <defs>
+        <filter id="xiaomi-glyph-threshold" x="0" y="0" width="100%" height="100%">
+          <feColorMatrix type="saturate" values="0" />
+          <feComponentTransfer>
+            <feFuncR type="discrete" tableValues="0 0 0 1" />
+            <feFuncG type="discrete" tableValues="0 0 0 1" />
+            <feFuncB type="discrete" tableValues="0 0 0 1" />
+          </feComponentTransfer>
+        </filter>
+        <mask id="xiaomi-glyph-mask" x="0" y="0" width="1536" height="1536" maskUnits="userSpaceOnUse">
+          <image
+            href="/images/xiaomi-logo.jpg"
+            width="1536"
+            height="1536"
+            preserveAspectRatio="xMidYMid meet"
+            filter="url(#xiaomi-glyph-threshold)"
+          />
+        </mask>
+      </defs>
+      <rect width="1536" height="1536" rx="340" fill="#ff6900" />
+      <rect width="1536" height="1536" fill="white" mask="url(#xiaomi-glyph-mask)" />
+    </svg>
+  )
+}
 
-      <div className="container mx-auto px-4 relative z-10">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <Badge
-            variant="outline"
-            className="mb-4 px-4 py-2 text-sm font-semibold bg-indigo-50 dark:bg-indigo-900/20 border-indigo-200 dark:border-indigo-800 text-indigo-700 dark:text-indigo-300"
-          >
-            My Skills
-          </Badge>
-          <h2 className="text-4xl lg:text-5xl font-black text-gray-900 dark:text-white mb-6">
-            TECHNICAL{" "}
-            <span className="bg-gradient-to-r from-indigo-500 to-purple-600 bg-clip-text text-transparent">
-              EXPERTISE
-            </span>
-          </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            Specialized in modern web technologies with expertise spanning frontend, backend, and emerging technologies
-            like Web3 and AI.
-          </p>
+export default function SkillsSection() {
+  return (
+    <section id="skills" className="section-shell bg-card/70 py-20 md:py-28">
+      <div className="container">
+        <div className="grid gap-8 border-b border-border pb-10 lg:grid-cols-[auto_1fr] lg:gap-16">
+          <p className="section-kicker pt-2">02 / Capabilities</p>
+          <div>
+            <h2 className="scroll-type-in display-title max-w-6xl text-[clamp(3.15rem,8vw,7.5rem)]">
+              <span className="block">Building across</span>
+              <span className="display-italic block text-primary">systems.</span>
+            </h2>
+            <p className="mt-7 max-w-2xl text-base leading-7 text-muted-foreground md:text-lg">
+              AI, security, onchain experiments, and web engineering are different lanes connected by the same habit:
+              learn the system, test it, then build something useful.
+            </p>
+          </div>
         </div>
 
-        {/* Skills Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {skillCategories.map((category, index) => (
-            <Card
-              key={index}
-              className={`border-2 ${category.borderColor} hover:shadow-xl transition-all duration-500 hover:scale-105 ${category.bgColor} backdrop-blur-sm group`}
-              style={{
-                animationDelay: `${index * 100}ms`,
-                opacity: isVisible ? 1 : 0,
-                transform: isVisible ? "translateY(0)" : "translateY(20px)",
-                transition: "all 0.6s ease-out",
-              }}
+        <div className="grid border-l border-t border-border md:grid-cols-2">
+          {groups.map((group, index) => (
+            <article
+              key={group.title}
+              className="capability-card group relative overflow-hidden border-b border-r border-border p-6 md:p-8"
             >
-              <CardContent className="p-8">
-                <div className="flex items-center mb-6">
-                  <div
-                    className={`w-12 h-12 rounded-xl ${category.bgColor} border ${category.borderColor} flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300`}
-                  >
-                    <category.icon className={`w-6 h-6 ${category.color}`} />
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white">{category.title}</h3>
-                </div>
-
-                {/* Progress Bar */}
-                <div className="mb-6">
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Proficiency</span>
-                    <span className={`text-sm font-bold ${category.color}`}>{category.percentage}%</span>
-                  </div>
-                  <Progress
-                    value={isVisible ? category.percentage : 0}
-                    className="h-2"
-                    style={{
-                      transition: "all 1s ease-out 0.5s",
-                    }}
-                  />
-                </div>
-
-                {/* Skills Tags */}
-                <div className="flex flex-wrap gap-2">
-                  {category.skills.map((skill, skillIndex) => (
-                    <Badge
-                      key={skillIndex}
-                      variant="secondary"
-                      className="text-xs px-3 py-1 bg-white/80 dark:bg-gray-800/80 border border-gray-200 dark:border-gray-700 hover:scale-105 transition-transform duration-200"
-                    >
-                      {skill}
-                    </Badge>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+              <span
+                className="pointer-events-none absolute -right-1 -top-5 font-mono text-[5.5rem] font-semibold tracking-[-0.12em] text-foreground/[0.025] transition duration-500 group-hover:-translate-y-1 group-hover:text-primary/[0.08]"
+                aria-hidden="true"
+              >
+                0{index + 1}
+              </span>
+              <span className="relative z-10 font-mono text-[0.65rem] text-muted-foreground">0{index + 1}</span>
+              <h3 className="relative z-10 mt-8 text-2xl font-semibold uppercase leading-none tracking-[-0.055em] transition-colors group-hover:text-primary md:text-3xl">
+                {group.title}
+              </h3>
+              <p className="relative z-10 mt-4 max-w-xl text-sm leading-6 text-muted-foreground">{group.description}</p>
+              <div className="relative z-10 mt-6 flex flex-wrap gap-x-4 gap-y-2 font-mono text-[0.62rem] font-semibold uppercase tracking-[0.09em] text-muted-foreground">
+                {group.items.map((item) => (
+                  <span key={item} className="border-b border-border pb-1 transition-colors group-hover:border-foreground/50">
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </article>
           ))}
         </div>
 
-        {/* Tools & Technologies */}
-        <div className="text-center">
-          <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-8">Tools & Technologies I Use</h3>
-          <div className="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto">
-            {tools.map((tool, index) => (
-              <Badge
-                key={index}
-                variant="outline"
-                className="px-6 py-3 text-sm font-semibold bg-white/80 dark:bg-gray-800/80 border-2 border-gray-200 dark:border-gray-700 hover:border-orange-300 dark:hover:border-orange-600 hover:bg-orange-50 dark:hover:bg-orange-900/20 transition-all duration-300 hover:scale-105 cursor-pointer"
-                style={{
-                  animationDelay: `${index * 50}ms`,
-                  opacity: isVisible ? 1 : 0,
-                  transform: isVisible ? "translateY(0)" : "translateY(10px)",
-                  transition: "all 0.4s ease-out",
-                }}
+        <div className="mt-20">
+          <div className="grid gap-8 border-y border-border py-10 lg:grid-cols-[0.7fr_1.3fr] lg:gap-16">
+            <div>
+              <p className="section-kicker">02B / Collaboration history</p>
+              <p className="mt-5 max-w-sm font-mono text-[0.65rem] uppercase leading-5 tracking-[0.12em] text-muted-foreground">
+                Selected teams across AI model development, cloud, developer platforms, and onchain products.
+              </p>
+            </div>
+            <div>
+              <h3 className="scroll-type-in display-title text-[clamp(3rem,8vw,6.6rem)]" aria-label="Built with others.">
+                <span className="block">Built with</span>
+                <span className="display-outline-primary block text-right">others.</span>
+              </h3>
+              <p className="mt-7 max-w-2xl text-sm leading-6 text-muted-foreground md:text-base md:leading-7">
+                This is a record of teams I&apos;ve worked with—not a generic list of tools I happen to use.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 border-l border-t border-border xl:grid-cols-4">
+            {collaborations.map((collaboration, index) => (
+              <article
+                key={collaboration.name}
+                className="collaboration-card group relative min-h-44 overflow-hidden border-b border-r border-border bg-background/70 p-4 md:min-h-52 md:p-6"
               >
-                {tool}
-              </Badge>
+                <div className="relative z-10 flex items-start justify-between">
+                  <span className="font-mono text-[0.62rem] text-muted-foreground">[0{index + 1}]</span>
+                  <div
+                    className={`flex items-center justify-center border border-border transition duration-300 group-hover:border-primary group-hover:shadow-[4px_4px_0_hsl(var(--primary))] ${
+                      collaboration.kind === "xiaomi-mimo"
+                        ? "h-12 w-32 bg-card px-2.5 group-hover:-rotate-1 md:h-14 md:w-40"
+                        : "h-12 w-12 bg-card group-hover:-rotate-3 md:h-14 md:w-14"
+                    }`}
+                  >
+                    <CollaborationMark kind={collaboration.kind} />
+                  </div>
+                </div>
+
+                <div className="relative z-10 mt-10 md:mt-14">
+                  <h4 className="text-[clamp(1.2rem,2.4vw,1.875rem)] font-semibold leading-[0.95] tracking-[-0.05em]">
+                    {collaboration.name}
+                  </h4>
+                  <p className="mt-3 font-mono text-[0.6rem] font-semibold uppercase tracking-[0.14em] text-muted-foreground transition-colors group-hover:text-primary">
+                    {collaboration.detail}
+                  </p>
+                </div>
+              </article>
             ))}
           </div>
         </div>

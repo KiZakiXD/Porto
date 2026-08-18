@@ -1,167 +1,173 @@
 "use client"
 
-import { useState, useEffect } from "react"
-import { Menu, X, Code } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { useEffect, useRef, useState } from "react"
+import { Menu, X } from "lucide-react"
 import { ThemeToggle } from "@/components/theme-toggle"
-import { useTheme } from "next-themes"
+
+const navLinks = [
+  { name: "Home", href: "#home", section: "home" },
+  { name: "About", href: "#about", section: "about" },
+  { name: "Skills", href: "#skills", section: "skills" },
+  { name: "Projects", href: "#projects", section: "projects" },
+  { name: "Contact", href: "#contact", section: "contact" },
+]
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isScrolled, setIsScrolled] = useState(false)
   const [activeSection, setActiveSection] = useState("home")
-  const { resolvedTheme } = useTheme()
-  const [mounted, setMounted] = useState(false)
+  const firstMobileLinkRef = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
-    setMounted(true)
-
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20)
+      const scrollPosition = window.scrollY + 160
 
-      // Active section detection
-      const sections = ["home", "about", "skills", "projects", "contact"]
-      const scrollPosition = window.scrollY + 150
-
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const section = sections[i]
-        const element = document.getElementById(section)
-        if (element) {
-          const offsetTop = element.offsetTop
-          if (scrollPosition >= offsetTop) {
-            setActiveSection(section)
-            break
-          }
+      for (let index = navLinks.length - 1; index >= 0; index--) {
+        const link = navLinks[index]
+        const element = document.getElementById(link.section)
+        if (element && scrollPosition >= element.offsetTop) {
+          setActiveSection(link.section)
+          break
         }
       }
     }
 
-    window.addEventListener("scroll", handleScroll)
+    window.addEventListener("scroll", handleScroll, { passive: true })
     handleScroll()
-
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  const handleNavClick = (href: string, sectionName: string) => {
-    setIsMenuOpen(false)
-    setActiveSection(sectionName)
+  useEffect(() => {
+    if (!isMenuOpen) return
 
-    const element = document.querySelector(href)
-    if (element) {
-      element.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      })
+    const body = document.body
+    const previousOverflow = body.style.overflow
+    const previousPaddingRight = body.style.paddingRight
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth
+    const desktopQuery = window.matchMedia("(min-width: 768px)")
+
+    body.style.overflow = "hidden"
+    if (scrollbarWidth > 0) body.style.paddingRight = `${scrollbarWidth}px`
+
+    const focusFrame = window.requestAnimationFrame(() => firstMobileLinkRef.current?.focus())
+
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setIsMenuOpen(false)
     }
+
+    const closeOnDesktop = (event: MediaQueryListEvent) => {
+      if (event.matches) setIsMenuOpen(false)
+    }
+
+    window.addEventListener("keydown", closeOnEscape)
+    desktopQuery.addEventListener("change", closeOnDesktop)
+
+    return () => {
+      window.cancelAnimationFrame(focusFrame)
+      body.style.overflow = previousOverflow
+      body.style.paddingRight = previousPaddingRight
+      window.removeEventListener("keydown", closeOnEscape)
+      desktopQuery.removeEventListener("change", closeOnDesktop)
+    }
+  }, [isMenuOpen])
+
+  const goTo = (href: string, section: string) => {
+    setIsMenuOpen(false)
+    setActiveSection(section)
+    document.querySelector(href)?.scrollIntoView({ behavior: "smooth", block: "start" })
   }
 
-  const navLinks = [
-    { name: "Home", href: "#home", section: "home" },
-    { name: "About", href: "#about", section: "about" },
-    { name: "Skills", href: "#skills", section: "skills" },
-    { name: "Projects", href: "#projects", section: "projects" },
-    { name: "Contact", href: "#contact", section: "contact" },
-  ]
-
-  const isDark = mounted && resolvedTheme === "dark"
-
   return (
-    <header
-      className={`fixed top-0 w-full z-50 transition-all duration-500 ${
-        isScrolled
-          ? isDark
-            ? "bg-gray-900/90 backdrop-blur-xl py-3 border-b border-gray-800/50 shadow-lg"
-            : "bg-white/90 backdrop-blur-xl py-3 border-b border-gray-200/50 shadow-lg"
-          : isDark
-            ? "bg-gray-900/50 backdrop-blur-md py-5"
-            : "bg-white/50 backdrop-blur-md py-5"
-      }`}
-    >
-      <div className="container mx-auto px-4">
-        <nav className="flex items-center justify-between">
-          {/* Logo */}
+    <>
+      <header className="fixed inset-x-0 top-0 z-50 border-b border-border bg-background/90 backdrop-blur-xl">
+        <div className="container flex h-16 items-center justify-between">
           <button
-            onClick={() => handleNavClick("#home", "home")}
-            className={`flex items-center gap-3 text-xl font-bold transition-all duration-300 ${
-              isDark ? "text-white" : "text-gray-900"
-            } hover:text-orange-500 group cursor-pointer`}
+            type="button"
+            onClick={() => goTo("#home", "home")}
+            className="font-mono text-sm font-semibold uppercase tracking-[-0.045em] transition-opacity hover:opacity-60"
+            aria-label="Back to home"
           >
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-orange-500 to-purple-600 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-              <Code className="w-5 h-5 text-white" />
-            </div>
-            <span className="font-black tracking-tight">KIZAKIXD</span>
+            KIZAKIXD
           </button>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-2">
-            {navLinks.map((link) => (
-              <button
-                key={link.name}
-                onClick={() => handleNavClick(link.href, link.section)}
-                className={`rounded-xl font-semibold px-6 py-2 transition-all duration-300 cursor-pointer ${
-                  activeSection === link.section
-                    ? "text-orange-500 bg-orange-50 dark:bg-orange-900/20 shadow-lg border border-orange-200 dark:border-orange-800"
-                    : isDark
-                      ? "text-white hover:text-orange-400 hover:bg-gray-800/50"
-                      : "text-gray-900 hover:text-orange-500 hover:bg-gray-100/50"
-                } hover:scale-105`}
-              >
-                {link.name}
-              </button>
-            ))}
-
-            <div className="flex items-center gap-3 ml-4">
-              <ThemeToggle />
-            </div>
-          </div>
-
-          {/* Mobile Navigation Toggle */}
-          <div className="flex items-center md:hidden gap-3">
-            <ThemeToggle />
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className={`rounded-xl transition-all duration-300 hover:scale-105 ${
-                isDark
-                  ? "text-white hover:text-orange-400 hover:bg-gray-800/50"
-                  : "text-gray-900 hover:text-orange-500 hover:bg-gray-100/50"
-              }`}
-            >
-              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </Button>
-          </div>
-        </nav>
-
-        {/* Mobile Navigation Menu */}
-        {isMenuOpen && (
-          <div
-            className={`md:hidden mt-4 p-6 rounded-2xl animate-in fade-in slide-in-from-top duration-300 ${
-              isDark
-                ? "bg-gray-900/95 backdrop-blur-xl border border-gray-800/50 shadow-2xl"
-                : "bg-white/95 backdrop-blur-xl border border-gray-200/50 shadow-2xl"
-            }`}
-          >
-            <div className="flex flex-col space-y-3">
-              {navLinks.map((link) => (
+          <div className="hidden items-center gap-7 md:flex">
+            <nav className="flex items-center gap-6" aria-label="Primary navigation">
+              {navLinks.map((link, index) => (
                 <button
-                  key={link.name}
-                  onClick={() => handleNavClick(link.href, link.section)}
-                  className={`text-left rounded-xl font-semibold px-6 py-3 transition-all duration-300 cursor-pointer ${
-                    activeSection === link.section
-                      ? "text-orange-500 bg-orange-50 dark:bg-orange-900/20 shadow-lg border border-orange-200 dark:border-orange-800"
-                      : isDark
-                        ? "text-white hover:text-orange-400 hover:bg-gray-800/50"
-                        : "text-gray-900 hover:text-orange-500 hover:bg-gray-100/50"
-                  } hover:scale-105`}
+                  type="button"
+                  key={link.section}
+                  onClick={() => goTo(link.href, link.section)}
+                  className={`relative py-2 font-mono text-[0.68rem] font-semibold uppercase tracking-[0.12em] transition-colors ${
+                    activeSection === link.section ? "text-foreground" : "text-muted-foreground hover:text-foreground"
+                  }`}
                 >
+                  <span className="mr-1.5 text-[0.6rem] text-muted-foreground">0{index + 1}</span>
                   {link.name}
+                  {activeSection === link.section ? (
+                    <span className="absolute inset-x-0 -bottom-[13px] h-px bg-primary" />
+                  ) : null}
                 </button>
               ))}
+            </nav>
+            <ThemeToggle />
+          </div>
+
+          <div className="flex items-center gap-2 md:hidden">
+            <ThemeToggle />
+            <button
+              type="button"
+              onClick={() => setIsMenuOpen((value) => !value)}
+              className="grid h-10 w-10 place-items-center border border-border transition-colors hover:border-foreground"
+              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isMenuOpen}
+              aria-controls="mobile-navigation"
+            >
+              {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {isMenuOpen ? (
+        <nav
+          id="mobile-navigation"
+          className="editorial-grid fixed inset-x-0 bottom-0 top-16 z-40 overflow-y-auto overscroll-contain bg-background md:hidden"
+          aria-label="Mobile navigation"
+        >
+          <div className="container flex min-h-full flex-col justify-between py-5">
+            <div>
+              {navLinks.map((link, index) => {
+                const isActive = activeSection === link.section
+
+                return (
+                  <button
+                    type="button"
+                    key={link.section}
+                    ref={index === 0 ? firstMobileLinkRef : undefined}
+                    onClick={() => goTo(link.href, link.section)}
+                    className="group flex w-full items-baseline justify-between border-b border-border py-2 text-left"
+                  >
+                    <span
+                      className={`display-title text-[clamp(1.75rem,8vw,2.65rem)] transition-colors ${
+                        isActive ? "text-primary" : "group-hover:text-primary"
+                      }`}
+                    >
+                      {link.name}
+                    </span>
+                    <span className="font-mono text-[0.65rem] text-muted-foreground">0{index + 1}</span>
+                  </button>
+                )
+              })}
+            </div>
+
+            <div className="mt-10 flex items-center justify-between border-t border-border pt-5 font-mono text-[0.65rem] uppercase tracking-[0.16em] text-muted-foreground">
+              <span>Portfolio / 2026</span>
+              <span className="flex items-center gap-2 text-foreground">
+                <span className="h-2 w-2 rounded-full bg-primary" /> Available
+              </span>
             </div>
           </div>
-        )}
-      </div>
-    </header>
+        </nav>
+      ) : null}
+    </>
   )
 }

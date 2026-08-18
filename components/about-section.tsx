@@ -1,135 +1,109 @@
-"use client"
+import Image from "next/image"
 
-import { Award, Users, Coffee, Code } from "lucide-react"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
+const facts = [
+  ["Current chapter", "AI · security · onchain"],
+  ["Collaboration", "Small teams · rapid iteration"],
+  ["Approach", "Learn · test · ship"],
+]
 
 export default function AboutSection() {
-  const achievements = [
-    { icon: Award, label: "Years Experience", value: "3+", color: "text-orange-500" },
-    { icon: Users, label: "Happy Clients", value: "50+", color: "text-purple-500" },
-    { icon: Coffee, label: "Projects Done", value: "100+", color: "text-indigo-500" },
-    { icon: Code, label: "Code Commits", value: "1000+", color: "text-teal-500" },
-  ]
-
-  const skills = [
-    "JavaScript",
-    "TypeScript",
-    "React",
-    "Next.js",
-    "Node.js",
-    "Tailwind CSS",
-    "Web3",
-    "Blockchain",
-    "AI/ML",
-    "UI/UX Design",
-    "Manga Artist",
-    "Paint Expert",
-    "Industrial Plastics Expert",
-  ]
-
   return (
-    <section
-      id="about"
-      className="py-24 bg-gradient-to-br from-gray-50 via-white to-purple-50 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 relative overflow-hidden"
-    >
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fillRule='evenodd'%3E%3Cg fill='%23000000' fillOpacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          }}
-        />
-      </div>
-
-      <div className="container mx-auto px-4 relative z-10">
-        {/* Section Header */}
-        <div className="text-center mb-12">
-          <Badge
-            variant="outline"
-            className="mb-4 px-4 py-2 text-sm font-semibold bg-orange-50 dark:bg-orange-900/20 border-orange-200 dark:border-orange-800 text-orange-700 dark:text-orange-300"
-          >
-            About Me
-          </Badge>
-          <h2 className="text-4xl lg:text-5xl font-black text-gray-900 dark:text-white mb-8">
-            MY{" "}
-            <span className="bg-gradient-to-r from-orange-500 to-purple-600 bg-clip-text text-transparent">STORY</span>
+    <section id="about" className="section-shell bg-background/60 py-20 md:py-28">
+      <div className="container">
+        <div className="grid gap-8 border-b border-border pb-10 lg:grid-cols-[auto_1fr] lg:gap-16">
+          <p className="section-kicker pt-2">01 / Profile</p>
+          <h2 className="scroll-type-in display-title max-w-6xl text-[clamp(3.6rem,9.5vw,8.5rem)]">
+            <span className="block">Curious</span>
+            <span className="display-outline block">by default.</span>
+            <span className="display-italic block text-right text-primary">Practical.</span>
           </h2>
         </div>
 
-        {/* Content */}
-        <div className="max-w-4xl mx-auto">
-          {/* Profile Image */}
-          <div className="flex justify-center mb-8">
-            <div className="relative w-64 h-64">
-              <div className="image-frame bg-gradient-to-br from-orange-100 to-purple-100 dark:from-orange-900/20 dark:to-purple-900/20 p-2">
-                <img
+        <div className="mt-10 border-b border-border pb-12 lg:pb-16">
+          <div className="grid grid-cols-[minmax(0,0.7fr)_minmax(0,1.3fr)] items-stretch gap-5 border-b border-border pb-10 sm:gap-8 lg:grid-cols-[16rem_minmax(0,1fr)] lg:gap-12">
+            <figure className="relative self-start p-2">
+              <span
+                className="pointer-events-none absolute left-0 top-0 h-12 w-12 border-l-2 border-t-2 border-primary"
+                aria-hidden="true"
+              />
+              <span
+                className="pointer-events-none absolute bottom-0 right-0 h-12 w-12 border-b-2 border-r-2 border-primary"
+                aria-hidden="true"
+              />
+
+              <div className="group relative overflow-hidden border border-border bg-card shadow-[6px_6px_0_hsl(var(--primary)/0.16)]">
+                <Image
                   src="/images/profile-real.jpeg"
                   alt="Aldi Zakia Pratama"
-                  className="w-full h-full object-cover rounded-lg"
+                  width={960}
+                  height={1200}
+                  sizes="(min-width: 1024px) 16rem, 35vw"
+                  className="aspect-[4/5] w-full object-cover object-[58%_50%] grayscale contrast-[1.08] transition duration-700 group-hover:scale-[1.025] group-hover:grayscale-0"
                 />
+                <div className="absolute inset-0 bg-primary/[0.08] mix-blend-color" aria-hidden="true" />
+                <div className="about-photo-scan absolute inset-0" aria-hidden="true" />
+                <div className="absolute inset-2 border border-white/15" aria-hidden="true" />
+                <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/55 to-transparent" aria-hidden="true" />
+                <span className="absolute left-0 top-0 bg-foreground px-2.5 py-1.5 font-mono text-[0.55rem] font-semibold tracking-[0.12em] text-background">
+                  01
+                </span>
+                <span className="absolute bottom-3 left-3 h-px w-10 bg-primary" aria-hidden="true" />
+                <span className="absolute inset-y-0 right-0 w-1 bg-primary" aria-hidden="true" />
               </div>
-              <div className="absolute -bottom-3 -right-3 w-12 h-12 bg-gradient-to-br from-orange-400 to-orange-600 rounded-xl rotate-12 shadow-lg" />
-              <div className="absolute -top-3 -left-3 w-10 h-10 bg-gradient-to-br from-purple-400 to-purple-600 rounded-xl -rotate-12 shadow-lg" />
+            </figure>
+
+            <div className="flex min-w-0 flex-col justify-between py-1 lg:py-3">
+              <div>
+                <p className="section-kicker">Aldi Zakia Pratama</p>
+                <p className="mt-4 max-w-4xl text-[clamp(1.25rem,4.8vw,3.5rem)] font-medium leading-[1.08] tracking-[-0.045em]">
+                  I work where <span className="text-primary">AI, security,</span> and onchain products overlap.
+                </p>
+              </div>
+
+              <div className="mt-8 border-t border-border pt-4">
+                <p className="meta-copy text-[0.58rem] font-semibold uppercase tracking-[0.15em] text-muted-foreground">
+                  Now / Building with small teams
+                </p>
+                <p className="mt-2 max-w-xl text-xs leading-5 text-muted-foreground md:text-sm md:leading-6">
+                  Learning fast, testing real systems, and turning useful ideas into working software.
+                </p>
+              </div>
             </div>
           </div>
 
-          {/* Description */}
-          <div className="text-center mb-12">
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              Passionate developer with a journey that started in 6th grade, now specializing in modern web technologies
-              and emerging tech.
+          <div className="mt-12 grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
+            <p className="max-w-3xl text-2xl font-medium leading-[1.2] tracking-[-0.04em] md:text-3xl">
+              I learn by testing ideas against real systems—then turning what works into useful products.
             </p>
-          </div>
 
-          {/* Story Text */}
-          <div className="space-y-6 mb-12">
-            <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-              Hi, I'm <span className="font-semibold text-orange-500">Aldi Zakia Pratama</span>, a dedicated student at
-              <span className="font-semibold"> SMK WISUDA KARYA</span>. My coding journey began when I was just in 6th
-              grade, and since then, I've been passionate about creating digital solutions that make a difference.
-            </p>
-            <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-              Over the years, I've developed expertise in modern web technologies, with a special focus on
-              <span className="font-semibold text-purple-500"> React, Next.js, and Web3 development</span>. I love
-              building applications that are not only functional but also provide exceptional user experiences.
-            </p>
-            <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-              When I'm not coding, I enjoy exploring new technologies, contributing to open-source projects, and sharing
-              my knowledge with the developer community. I believe in using technology to solve real-world problems.
-            </p>
-          </div>
-
-          {/* Skills Tags */}
-          <div className="space-y-4 mb-12">
-            <h3 className="text-xl font-bold text-gray-900 dark:text-white text-center">Technologies I Work With</h3>
-            <div className="flex flex-wrap gap-3 justify-center">
-              {skills.map((skill, index) => (
-                <Badge
-                  key={index}
-                  variant="secondary"
-                  className="px-4 py-2 bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800 border border-gray-300 dark:border-gray-600 hover:from-orange-100 hover:to-purple-100 dark:hover:from-orange-900/20 dark:hover:to-purple-900/20 transition-all duration-300 cursor-pointer hover:scale-105"
-                >
-                  {skill}
-                </Badge>
-              ))}
+            <div className="max-w-3xl space-y-5 text-base leading-8 text-muted-foreground md:text-lg">
+              <p>
+                I&apos;m Aldi Zakia Pratama, also known online as KizakiXD. My interest in programming started in sixth
+                grade and kept growing through small experiments, bots, websites, and tools I actually wanted to use.
+              </p>
+              <p>
+                Today I focus on AI development and automation, cybersecurity and responsible bug bounty work, plus
+                onchain tooling for token and memecoin communities.
+              </p>
+              <p>
+                I collaborate with small teams exploring products across Base and Robinhood Chain while
+                continuing to sharpen the web engineering behind them.
+              </p>
             </div>
           </div>
 
-          {/* Achievement Cards */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {achievements.map((achievement, index) => (
-              <Card
-                key={index}
-                className="border-2 border-gray-200 dark:border-gray-700 hover:border-orange-300 dark:hover:border-orange-600 transition-all duration-300 hover:shadow-lg hover:scale-105 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm"
+          <div className="mt-10 grid border-t border-border sm:grid-cols-3">
+            {facts.map(([label, value], index) => (
+              <div
+                key={label}
+                className="grid grid-cols-[2.5rem_1fr] gap-3 border-b border-border py-4 sm:block sm:border-b-0 sm:border-r sm:px-5 sm:first:pl-0 sm:last:border-r-0 sm:last:pr-0"
               >
-                <CardContent className="p-6 text-center">
-                  <achievement.icon className={`w-8 h-8 mx-auto mb-3 ${achievement.color}`} />
-                  <div className={`text-2xl font-bold mb-1 ${achievement.color}`}>{achievement.value}</div>
-                  <div className="text-sm text-gray-600 dark:text-gray-400 font-medium">{achievement.label}</div>
-                </CardContent>
-              </Card>
+                <span className="font-mono text-[0.65rem] text-muted-foreground">0{index + 1}</span>
+                <div>
+                  <span className="section-kicker block sm:mt-3">{label}</span>
+                  <span className="mt-1.5 block font-medium">{value}</span>
+                </div>
+              </div>
             ))}
           </div>
         </div>

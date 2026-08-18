@@ -1,99 +1,86 @@
-"use client"
-
 import Link from "next/link"
-import { ArrowRight } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
+import { ArrowDownRight, ArrowUpRight } from "lucide-react"
+import UtcClock from "@/components/utc-clock"
+
+const tickerItems = ["AI development", "Security research", "Automation", "Onchain products"]
 
 export default function HeroSection() {
-  return (
-    <section
-      id="home"
-      className="min-h-screen pt-16 md:pt-20 bg-gradient-to-br from-white via-gray-50 to-indigo-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative overflow-hidden"
-    >
-      {/* Background decorative elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-orange-400/20 to-purple-600/20 rounded-full blur-3xl"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-tr from-indigo-400/20 to-teal-600/20 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-purple-400/10 to-orange-400/10 rounded-full blur-3xl"></div>
-      </div>
+  const ticker = [...tickerItems, ...tickerItems]
 
-      <div className="container mx-auto px-4 py-8 md:py-16 relative z-10">
-        <div className="flex flex-col items-center justify-center min-h-[calc(100vh-8rem)] md:min-h-[80vh] text-center space-y-6 md:space-y-8">
-          {/* Status Badge */}
-          <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
-            <Badge
-              variant="outline"
-              className="bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800 text-green-700 dark:text-green-300 px-4 py-2"
-            >
-              <div className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></div>
-              Available for work
-            </Badge>
-            <div className="flex items-center text-sm text-gray-600 dark:text-gray-400">
-              <span>📍 Kudus, Indonesia</span>
-            </div>
+  return (
+    <section id="home" className="editorial-grid relative overflow-hidden bg-transparent pt-16">
+      <div className="container relative z-10 flex min-h-[calc(100svh-4rem)] flex-col">
+        <div className="meta-copy grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-4 gap-y-3 border-b border-border py-5 text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-muted-foreground sm:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] sm:gap-x-6">
+          <span className="col-span-2 flex items-center gap-2.5 text-foreground sm:col-span-1 sm:col-start-1 sm:row-start-1">
+            <span className="h-2 w-2 rounded-full bg-primary" />
+            Available for selected projects
+          </span>
+          <div className="col-start-2 row-start-2 justify-self-end sm:col-start-2 sm:row-start-1 sm:justify-self-center">
+            <UtcClock />
+          </div>
+          <span className="col-start-1 row-start-2 text-[0.59rem] tracking-[0.13em] sm:col-start-3 sm:row-start-1 sm:justify-self-end sm:text-[inherit] sm:tracking-[inherit]">
+            AI · Security · Onchain
+          </span>
+        </div>
+
+        <div className="relative grid flex-1 items-center gap-8 py-12 lg:grid-cols-[5rem_1fr] lg:py-16">
+          <div className="meta-copy hidden h-full items-center justify-center border-r border-border text-[0.65rem] uppercase tracking-[0.22em] text-muted-foreground lg:flex">
+            <span className="[writing-mode:vertical-rl]">Portfolio / Volume 26</span>
           </div>
 
-          {/* Main Heading */}
-          <div className="space-y-3 md:space-y-4">
-            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-black leading-tight">
-              <span className="text-gray-900 dark:text-white">I'M </span>
-              <span className="bg-gradient-to-r from-orange-500 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
-                ZAKI
+          <div>
+            <p className="section-kicker mb-7">Aldi Zakia Pratama / AI · Security · Onchain</p>
+            <h1
+              className="display-title text-[clamp(3.25rem,14.5vw,10.5rem)]"
+              aria-label="I build across AI, security, and onchain."
+            >
+              <span className="type-reveal block" style={{ animationDelay: "80ms" }}>I build</span>
+              <span className="type-reveal display-italic block text-primary" style={{ animationDelay: "160ms" }}>across AI,</span>
+              <span className="type-reveal mt-[0.08em] block text-right" style={{ animationDelay: "240ms" }}>security &amp;</span>
+              <span className="type-reveal block text-right" style={{ animationDelay: "320ms" }}>
+                <span className="kinetic-outline display-outline block">onchain.</span>
               </span>
             </h1>
-            <h2 className="text-lg sm:text-2xl lg:text-4xl font-bold text-gray-800 dark:text-gray-200 leading-relaxed px-4">
-              UI Designer, AI Learning &<br />
-              <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
-                Web3 Developer
-              </span>
-            </h2>
-          </div>
-
-          {/* Description */}
-          <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 leading-relaxed max-w-2xl px-4">
-            Student at SMK WISUDA KARYA with 3+ years of passion in technology and programming. Specializing in modern
-            web development and emerging technologies.
-          </p>
-
-          {/* Stats */}
-          <div className="flex gap-6 sm:gap-8">
-            <div className="text-center">
-              <div className="text-2xl sm:text-3xl font-bold text-orange-500">3+</div>
-              <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Years Experience</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl sm:text-3xl font-bold text-purple-500">10+</div>
-              <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Projects Done</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl sm:text-3xl font-bold text-indigo-500">100%</div>
-              <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Client Satisfaction</div>
-            </div>
-          </div>
-
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center w-full max-w-md sm:max-w-none px-4">
-            <Button
-              asChild
-              size="lg"
-              className="bg-gradient-to-r from-orange-500 to-purple-600 hover:from-orange-600 hover:to-purple-700 text-white font-semibold px-6 sm:px-8 py-4 sm:py-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 w-full sm:w-auto"
-            >
-              <Link href="#projects">
-                <ArrowRight className="mr-2 h-5 w-5" />
-                View My Work
-              </Link>
-            </Button>
-            <Button
-              asChild
-              variant="outline"
-              size="lg"
-              className="border-2 border-gray-300 dark:border-gray-600 hover:border-orange-500 dark:hover:border-orange-500 px-6 sm:px-8 py-4 sm:py-6 rounded-xl font-semibold transition-all duration-300 hover:scale-105 bg-transparent w-full sm:w-auto"
-            >
-              <Link href="#contact">Let's Talk</Link>
-            </Button>
           </div>
         </div>
+
+        <div className="grid gap-7 border-t border-border py-7 md:grid-cols-[auto_1fr_auto] md:items-end md:gap-10">
+          <span className="meta-copy text-xs text-muted-foreground">[ 01 — 26 ]</span>
+          <p className="max-w-2xl text-lg leading-[1.55] tracking-[-0.02em] text-muted-foreground md:text-xl">
+            Developer working across AI systems, security research, automation, and experimental onchain products.
+          </p>
+          <div className="flex flex-wrap gap-x-6 gap-y-4 md:justify-end">
+            <Link
+              href="#projects"
+              className="group inline-flex items-center gap-2 border-b border-foreground pb-1 text-sm font-semibold"
+            >
+              Selected work
+              <ArrowDownRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:translate-y-0.5" />
+            </Link>
+            <Link
+              href="#contact"
+              className="group inline-flex items-center gap-2 border-b border-border pb-1 text-sm font-semibold text-muted-foreground transition-colors hover:border-foreground hover:text-foreground"
+            >
+              Start a conversation
+              <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      <div className="overflow-hidden border-y border-border bg-foreground py-3 text-background">
+        <div className="marquee-track" aria-hidden="true">
+          {ticker.map((item, index) => (
+            <span
+              key={`${item}-${index}`}
+              className="font-mono text-xs font-semibold uppercase tracking-[0.18em]"
+            >
+              {item}
+              <span className="mx-8 text-primary">✦</span>
+            </span>
+          ))}
+        </div>
+        <span className="sr-only">AI development, security research, automation, and onchain products.</span>
       </div>
     </section>
   )
