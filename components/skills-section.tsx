@@ -1,4 +1,5 @@
-import { Cloud, Feather } from "lucide-react"
+import Image from "next/image"
+import { Feather } from "lucide-react"
 
 const groups = [
   {
@@ -19,43 +20,59 @@ const groups = [
   {
     title: "Web & infrastructure",
     description: "The engineering layer that connects interfaces, APIs, automation, and deployment.",
-    items: ["Next.js", "TypeScript", "Node.js", "REST APIs", "AWS", "Alibaba Cloud", "Git"],
+    items: ["Next.js", "TypeScript", "Node.js", "Python", "PHP", "REST APIs", "AWS", "Alibaba Cloud", "Git"],
   },
 ]
 
-type PlatformKind = "deepseek" | "aws" | "base" | "robinhood" | "google" | "alibaba"
+type CollaborationKind = "deepseek" | "aws" | "base" | "robinhood" | "google" | "alibaba" | "xiaomi"
 
-const platforms: Array<{ name: string; detail: string; kind: PlatformKind }> = [
-  { name: "DeepSeek", detail: "AI models", kind: "deepseek" },
-  { name: "AWS", detail: "Cloud + AI", kind: "aws" },
-  { name: "Base", detail: "Onchain L2", kind: "base" },
-  { name: "Robinhood Chain", detail: "Onchain L2", kind: "robinhood" },
-  { name: "Google for Developers", detail: "Developer tools", kind: "google" },
-  { name: "Alibaba Cloud", detail: "Cloud + AI", kind: "alibaba" },
+const collaborations: Array<{
+  name: string
+  detail: string
+  kind: CollaborationKind
+  monogram: string
+  featured?: boolean
+}> = [
+  { name: "DeepSeek", detail: "AI development", kind: "deepseek", monogram: "DS" },
+  { name: "AWS", detail: "Cloud & AI", kind: "aws", monogram: "AWS" },
+  { name: "Base", detail: "Onchain products", kind: "base", monogram: "BASE" },
+  { name: "Robinhood Chain", detail: "Onchain products", kind: "robinhood", monogram: "RHC" },
+  { name: "Google for Developers", detail: "Developer collaboration", kind: "google", monogram: "GDEV" },
+  { name: "Alibaba Cloud", detail: "Cloud & AI", kind: "alibaba", monogram: "ALI" },
+  { name: "Xiaomi", detail: "AI development team", kind: "xiaomi", monogram: "MI", featured: true },
 ]
 
-function PlatformMark({ kind }: { kind: PlatformKind }) {
+function CollaborationMark({ kind }: { kind: CollaborationKind }) {
   if (kind === "deepseek") {
     return (
-      <svg viewBox="0 0 64 48" className="h-9 w-9" aria-hidden="true">
-        <path
-          fill="#4d6bfe"
-          d="M5 25.3C5 14 14.6 6.8 27.3 6.8c7 0 12.6 1.9 17.1 5.8 2.6-4.8 7-7.7 13.4-7.7-1.2 5.8.2 10 4.8 13.1-3.4 5.2-8.6 7.7-15.7 7.2C42.4 34.7 33.4 41 22 41 12 41 5 34.8 5 25.3Z"
-        />
-        <path
-          fill="white"
-          d="M11.5 26.6c7.3-3.5 14.3-1.5 19.6 5.3 3.8 4.8 8.1 7.2 13.1 7.1-5.7 4.1-13.8 5.3-21.5 2.7-7.2-2.4-11.1-7.3-11.2-15.1Z"
-        />
-        <circle cx="22.3" cy="18.6" r="2.1" fill="white" />
+      <Image
+        src="/images/deepseek-logo.jpg"
+        alt=""
+        width={48}
+        height={48}
+        className="h-10 w-10 rounded-[24%] object-cover"
+        aria-hidden="true"
+      />
+    )
+  }
+
+  if (kind === "aws") {
+    return (
+      <svg viewBox="0 0 52 32" className="h-8 w-11" aria-hidden="true">
+        <text x="4" y="20" fill="currentColor" fontFamily="Arial, sans-serif" fontSize="17" fontWeight="700">
+          aws
+        </text>
+        <path d="M9 24c9 5 21 5 31 0" fill="none" stroke="#ff9900" strokeWidth="2" strokeLinecap="round" />
+        <path d="m37 22 4 1-2 4" fill="none" stroke="#ff9900" strokeWidth="2" strokeLinecap="round" />
       </svg>
     )
   }
-  if (kind === "aws") return <Cloud className="h-7 w-7 text-[#ff9900]" aria-hidden="true" />
-  if (kind === "robinhood") return <Feather className="h-7 w-7 text-[#00c805]" aria-hidden="true" />
+
+  if (kind === "robinhood") return <Feather className="h-8 w-8 text-[#00c805]" aria-hidden="true" />
 
   if (kind === "google") {
     return (
-      <svg viewBox="0 0 32 32" className="h-7 w-7" fill="none" aria-hidden="true">
+      <svg viewBox="0 0 32 32" className="h-8 w-8" fill="none" aria-hidden="true">
         <path d="M13 5 5 16" stroke="#4285f4" strokeWidth="3.2" strokeLinecap="round" />
         <path d="m5 16 8 11" stroke="#ea4335" strokeWidth="3.2" strokeLinecap="round" />
         <path d="m19 5 8 11" stroke="#fbbc04" strokeWidth="3.2" strokeLinecap="round" />
@@ -66,7 +83,7 @@ function PlatformMark({ kind }: { kind: PlatformKind }) {
 
   if (kind === "base") {
     return (
-      <svg viewBox="0 0 32 32" className="h-7 w-7" aria-hidden="true">
+      <svg viewBox="0 0 32 32" className="h-8 w-8" aria-hidden="true">
         <circle cx="16" cy="16" r="15" fill="#0052ff" />
         <path d="M6.5 16h19" stroke="white" strokeWidth="3.2" />
       </svg>
@@ -75,14 +92,22 @@ function PlatformMark({ kind }: { kind: PlatformKind }) {
 
   if (kind === "alibaba") {
     return (
-      <svg viewBox="0 0 32 32" className="h-7 w-7" fill="none" aria-hidden="true">
+      <svg viewBox="0 0 32 32" className="h-8 w-8" fill="none" aria-hidden="true">
         <path d="M12 7H6v18h6M20 7h6v18h-6" stroke="#ff6a00" strokeWidth="3" strokeLinecap="round" />
         <path d="M10 16h12" stroke="#ff6a00" strokeWidth="3" strokeLinecap="round" />
       </svg>
     )
   }
 
-  return null
+  return (
+    <svg viewBox="0 0 32 32" className="h-9 w-9" aria-hidden="true">
+      <rect x="1" y="1" width="30" height="30" rx="9" fill="#ff6900" />
+      <path
+        fill="white"
+        d="M6.5 9.5h10.4c3.8 0 5.9 2 5.9 5.8v7.2h-3.9v-6.8c0-1.7-.8-2.4-2.4-2.4h-.6v9.2h-3.6v-9.2h-2v9.2H6.5v-13ZM25 9.5h2.5v13H25z"
+      />
+    </svg>
+  )
 }
 
 export default function SkillsSection() {
@@ -105,13 +130,22 @@ export default function SkillsSection() {
 
         <div className="grid border-l border-t border-border md:grid-cols-2">
           {groups.map((group, index) => (
-            <article key={group.title} className="group border-b border-r border-border p-6 md:p-8">
-              <span className="font-mono text-[0.65rem] text-muted-foreground">0{index + 1}</span>
-              <h3 className="mt-8 text-2xl font-semibold uppercase leading-none tracking-[-0.055em] transition-colors group-hover:text-primary md:text-3xl">
+            <article
+              key={group.title}
+              className="capability-card group relative overflow-hidden border-b border-r border-border p-6 md:p-8"
+            >
+              <span
+                className="pointer-events-none absolute -right-1 -top-5 font-mono text-[5.5rem] font-semibold tracking-[-0.12em] text-foreground/[0.025] transition duration-500 group-hover:-translate-y-1 group-hover:text-primary/[0.08]"
+                aria-hidden="true"
+              >
+                0{index + 1}
+              </span>
+              <span className="relative z-10 font-mono text-[0.65rem] text-muted-foreground">0{index + 1}</span>
+              <h3 className="relative z-10 mt-8 text-2xl font-semibold uppercase leading-none tracking-[-0.055em] transition-colors group-hover:text-primary md:text-3xl">
                 {group.title}
               </h3>
-              <p className="mt-4 max-w-xl text-sm leading-6 text-muted-foreground">{group.description}</p>
-              <div className="mt-6 flex flex-wrap gap-x-4 gap-y-2 font-mono text-[0.62rem] font-semibold uppercase tracking-[0.09em] text-muted-foreground">
+              <p className="relative z-10 mt-4 max-w-xl text-sm leading-6 text-muted-foreground">{group.description}</p>
+              <div className="relative z-10 mt-6 flex flex-wrap gap-x-4 gap-y-2 font-mono text-[0.62rem] font-semibold uppercase tracking-[0.09em] text-muted-foreground">
                 {group.items.map((item) => (
                   <span key={item} className="border-b border-border pb-1 transition-colors group-hover:border-foreground/50">
                     {item}
@@ -122,36 +156,57 @@ export default function SkillsSection() {
           ))}
         </div>
 
-        <div className="mt-16 border-y border-border py-6">
-          <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-            <p className="section-kicker">Current orbit / Teams &amp; ecosystems</p>
-            <p className="font-mono text-[0.62rem] uppercase tracking-[0.1em] text-muted-foreground">
-              Moving through the systems behind the work
-            </p>
+        <div className="mt-20">
+          <div className="grid gap-8 border-y border-border py-10 lg:grid-cols-[0.7fr_1.3fr] lg:gap-16">
+            <div>
+              <p className="section-kicker">02B / Collaboration history</p>
+              <p className="mt-5 max-w-sm font-mono text-[0.65rem] uppercase leading-5 tracking-[0.12em] text-muted-foreground">
+                Selected teams across AI, cloud, developer platforms, and onchain products.
+              </p>
+            </div>
+            <div>
+              <h3 className="scroll-type-in display-title text-[clamp(3rem,8vw,6.6rem)]" aria-label="Built with others.">
+                <span className="block">Built with</span>
+                <span className="display-outline-primary block text-right">others.</span>
+              </h3>
+              <p className="mt-7 max-w-2xl text-sm leading-6 text-muted-foreground md:text-base md:leading-7">
+                This is a record of teams I&apos;ve worked with—not a generic list of tools I happen to use.
+              </p>
+            </div>
           </div>
 
-          <div className="overflow-hidden border-y border-border bg-background">
-            <div className="collaboration-track py-2" aria-hidden="true">
-              {[...platforms, ...platforms].map((platform, index) => (
-                <div
-                  key={`${platform.name}-${index}`}
-                  className="group flex min-w-[14.5rem] items-center gap-4 border-r border-border px-5 py-4 md:min-w-[18rem] md:px-7"
-                >
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center border border-border bg-card transition-transform duration-300 group-hover:-rotate-3 group-hover:scale-105">
-                    <PlatformMark kind={platform.kind} />
-                  </div>
-                  <div>
-                    <p className="text-base font-semibold tracking-[-0.035em]">{platform.name}</p>
-                    <p className="mt-1 font-mono text-[0.58rem] uppercase tracking-[0.12em] text-muted-foreground">
-                      {platform.detail}
-                    </p>
+          <div className="grid border-l border-t border-border sm:grid-cols-2 xl:grid-cols-4">
+            {collaborations.map((collaboration, index) => (
+              <article
+                key={collaboration.name}
+                className={`collaboration-card group relative min-h-48 overflow-hidden border-b border-r border-border bg-background p-5 md:min-h-56 md:p-6 ${
+                  collaboration.featured ? "sm:col-span-2" : ""
+                }`}
+              >
+                <span className="collaboration-ghost" aria-hidden="true">
+                  {collaboration.monogram}
+                </span>
+                <div className="relative z-10 flex items-start justify-between">
+                  <span className="font-mono text-[0.62rem] text-muted-foreground">[0{index + 1}]</span>
+                  <div className="flex h-14 w-14 items-center justify-center border border-border bg-card transition duration-300 group-hover:-rotate-3 group-hover:border-primary group-hover:shadow-[4px_4px_0_hsl(var(--primary))]">
+                    <CollaborationMark kind={collaboration.kind} />
                   </div>
                 </div>
-              ))}
-            </div>
-            <span className="sr-only">
-              DeepSeek, AWS, Base, Robinhood Chain, Google for Developers, and Alibaba Cloud.
-            </span>
+
+                <div className="relative z-10 mt-14 md:mt-16">
+                  <h4
+                    className={`font-semibold leading-[0.95] tracking-[-0.05em] ${
+                      collaboration.featured ? "text-4xl md:text-5xl" : "text-2xl md:text-3xl"
+                    }`}
+                  >
+                    {collaboration.name}
+                  </h4>
+                  <p className="mt-3 font-mono text-[0.6rem] font-semibold uppercase tracking-[0.14em] text-muted-foreground transition-colors group-hover:text-primary">
+                    {collaboration.detail}
+                  </p>
+                </div>
+              </article>
+            ))}
           </div>
         </div>
       </div>
