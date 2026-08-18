@@ -10,19 +10,20 @@ export default function HeroSection() {
   return (
     <section id="home" className="editorial-grid relative overflow-hidden bg-transparent pt-16">
       <div className="container relative z-10 flex min-h-[calc(100svh-4rem)] flex-col">
-        <div className="meta-copy flex flex-col gap-3 border-b border-border py-5 text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
-          <span className="flex items-center gap-2.5 text-foreground">
+        <div className="meta-copy grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-4 gap-y-3 border-b border-border py-5 text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-muted-foreground sm:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] sm:gap-x-6">
+          <span className="col-span-2 flex items-center gap-2.5 text-foreground sm:col-span-1 sm:col-start-1 sm:row-start-1">
             <span className="h-2 w-2 rounded-full bg-primary" />
             Available for selected projects
           </span>
-          <span>AI · Security · Onchain</span>
+          <div className="col-start-2 row-start-2 justify-self-end sm:col-start-2 sm:row-start-1 sm:justify-self-center">
+            <UtcClock />
+          </div>
+          <span className="col-start-1 row-start-2 text-[0.59rem] tracking-[0.13em] sm:col-start-3 sm:row-start-1 sm:justify-self-end sm:text-[inherit] sm:tracking-[inherit]">
+            AI · Security · Onchain
+          </span>
         </div>
 
         <div className="relative grid flex-1 items-center gap-8 py-12 lg:grid-cols-[5rem_1fr] lg:py-16">
-          <div className="absolute right-0 top-5 z-20 sm:top-7">
-            <UtcClock />
-          </div>
-
           <div className="meta-copy hidden h-full items-center justify-center border-r border-border text-[0.65rem] uppercase tracking-[0.22em] text-muted-foreground lg:flex">
             <span className="[writing-mode:vertical-rl]">Portfolio / Volume 26</span>
           </div>
