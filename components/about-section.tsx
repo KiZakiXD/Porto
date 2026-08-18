@@ -32,15 +32,8 @@ export default function AboutSection() {
                   className="aspect-[4/5] w-full object-cover object-[58%_50%] grayscale transition duration-500 hover:grayscale-0"
                 />
                 <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-background/80 to-transparent" aria-hidden="true" />
-                <span className="absolute left-2 top-2 bg-background px-2 py-1 font-mono text-[0.58rem] font-semibold text-foreground">
-                  01 / PORTRAIT
-                </span>
                 <span className="absolute inset-y-0 right-0 w-1 bg-primary" aria-hidden="true" />
               </div>
-              <figcaption className="meta-copy flex items-center justify-between border-b border-border py-2.5 text-[0.55rem] uppercase tracking-[0.12em] text-muted-foreground md:text-[0.62rem]">
-                <span>Profile</span>
-                <span>2026</span>
-              </figcaption>
             </figure>
 
             <div className="flex min-w-0 flex-col justify-between py-1 lg:py-3">
