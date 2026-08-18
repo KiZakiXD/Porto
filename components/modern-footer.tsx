@@ -5,7 +5,7 @@ const socials = [
   ["GitHub", "https://github.com/KiZakiXD"],
   ["Instagram", "https://instagram.com/iamkizakixd"],
   ["Facebook", "https://www.facebook.com/share/1BxtFbdeZF/"],
-  ["WhatsApp", "https://wa.me/6285147107687?text=Hi..."],
+  ["WhatsApp", "https://wa.me/15812592235?text=Hi%20Aldi%2C%20I%20found%20your%20portfolio."],
 ]
 
 export default function ModernFooter() {
@@ -14,14 +14,15 @@ export default function ModernFooter() {
   return (
     <footer className="section-shell overflow-hidden bg-foreground text-background">
       <div className="container py-10 md:py-12">
-        <p className="section-kicker text-background/50">End / Start again</p>
-        <p className="display-title mt-8 whitespace-nowrap text-[clamp(4.15rem,15.8vw,13rem)] leading-[0.72] tracking-[-0.09em]">
-          KIZAKI<span className="display-outline-primary">XD.</span>
+        <p className="section-kicker text-background/50">End / Thanks for visiting</p>
+        <p className="display-title mt-8 max-w-6xl text-[clamp(3.8rem,11.5vw,9.5rem)] leading-[0.82] tracking-[-0.08em]">
+          Thanks for
+          <span className="display-outline-primary block text-right">stopping by.</span>
         </p>
 
         <div className="mt-12 flex flex-col gap-8 border-t border-background/20 pt-7 md:flex-row md:items-end md:justify-between">
           <p className="max-w-md text-sm leading-6 text-background/60">
-            Personal portfolio for experiments, selected work, and things worth building next.
+            Selected work is being prepared. Reach out if you would like to build something useful together.
           </p>
 
           <div className="flex flex-wrap gap-x-5 gap-y-3">
@@ -42,7 +43,7 @@ export default function ModernFooter() {
 
         <div className="mt-10 flex flex-col gap-2 border-t border-background/20 pt-5 font-mono text-[0.62rem] uppercase tracking-[0.1em] text-background/45 sm:flex-row sm:items-center sm:justify-between">
           <span>© {currentYear} Aldi Zakia Pratama</span>
-          <span>Designed & built by KizakiXD</span>
+          <span>Independent developer portfolio</span>
         </div>
       </div>
     </footer>

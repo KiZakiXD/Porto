@@ -2,10 +2,11 @@
 
 import type React from "react"
 import { useState } from "react"
-import { ArrowUpRight, Mail, MapPin, MessageCircle } from "lucide-react"
+import { ArrowUpRight, Mail, MessageCircle } from "lucide-react"
 
 const email = "aldizakiapratama@gmail.com"
-const whatsappUrl = "https://wa.me/6285147107687?text=Hi%20Zaki%2C%20I%20found%20your%20portfolio."
+const whatsappNumber = "+1 (581) 259-2235"
+const whatsappUrl = "https://wa.me/15812592235?text=Hi%20Aldi%2C%20I%20found%20your%20portfolio."
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({ name: "", email: "", subject: "", message: "" })
@@ -54,12 +55,11 @@ export default function ContactSection() {
                 rel="noreferrer"
                 className="group flex items-center justify-between border-b border-border py-5 hover:text-primary"
               >
-                <span className="flex items-center gap-3"><MessageCircle className="h-4 w-4" /> WhatsApp</span>
+                <span className="flex items-center gap-3">
+                  <MessageCircle className="h-4 w-4" /> {whatsappNumber}
+                </span>
                 <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
               </a>
-              <div className="flex items-center gap-3 border-b border-border py-5 text-muted-foreground">
-                <MapPin className="h-4 w-4" /> Kudus, Central Java, Indonesia
-              </div>
             </div>
           </div>
 

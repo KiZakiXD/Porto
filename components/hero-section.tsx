@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { ArrowDownRight, ArrowUpRight } from "lucide-react"
 
-const tickerItems = ["Web interfaces", "Automation", "AI experiments", "Open source"]
+const tickerItems = ["Web interfaces", "Automation", "AI experiments", "Digital products"]
 
 export default function HeroSection() {
   const ticker = [...tickerItems, ...tickerItems]
@@ -14,7 +14,7 @@ export default function HeroSection() {
             <span className="h-2 w-2 rounded-full bg-primary" />
             Available for selected projects
           </span>
-          <span>Kudus, Indonesia · GMT+7</span>
+          <span>Independent developer · 2026</span>
         </div>
 
         <div className="grid flex-1 items-center gap-8 py-12 lg:grid-cols-[5rem_1fr] lg:py-16">
@@ -23,7 +23,7 @@ export default function HeroSection() {
           </div>
 
           <div>
-            <p className="section-kicker mb-7">Aldi Zakia Pratama / KizakiXD</p>
+            <p className="section-kicker mb-7">Aldi Zakia Pratama / Independent developer</p>
             <h1
               className="display-title text-[clamp(3.7rem,16.4vw,10.5rem)]"
               aria-label="Code with character. Built to work."
@@ -73,7 +73,7 @@ export default function HeroSection() {
             </span>
           ))}
         </div>
-        <span className="sr-only">Web interfaces, automation, AI experiments, and open source.</span>
+        <span className="sr-only">Web interfaces, automation, AI experiments, and digital products.</span>
       </div>
     </section>
   )

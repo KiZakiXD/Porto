@@ -138,7 +138,7 @@ export default function Navbar() {
             </div>
 
             <div className="mt-10 flex items-center justify-between border-t border-border pt-5 font-mono text-[0.65rem] uppercase tracking-[0.16em] text-muted-foreground">
-              <span>Kudus / ID</span>
+              <span>Portfolio / 2026</span>
               <span className="flex items-center gap-2 text-foreground">
                 <span className="h-2 w-2 rounded-full bg-primary" /> Available
               </span>
