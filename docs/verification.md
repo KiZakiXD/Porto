@@ -1,33 +1,39 @@
-# Orbital Works verification
+# Verification — Galaxy rebuild
 
-Verified on 8 October 2026 against the production Next.js build served with `next start`.
+Verified with the production Next.js build and Chromium on 9 October 2026 (Asia/Jakarta).
 
-## Build and navigation
+## Build
 
-- `npm run build`: passes, including TypeScript checking and static generation of all routes and the Open Graph image.
-- `npm run test:orbit`: passes 3,286 spherical navigation steps, longitude seam crossings, polar routes, antipodes, arrival, keyboard limits, and camera-relative satellite occlusion.
-- `npm run typecheck` and `git diff --check`: pass.
-- Initial route JavaScript: 113 kB; Quick View: 110 kB. Three.js and the scene are loaded separately through a dynamic client import.
+- `npm run build` passed TypeScript validation and all eight static-generation steps, including the social preview image.
+- `npm run typecheck` and `git diff --check` passed.
+- First-load page JavaScript is 115 kB. Three.js loads as a separate dynamic scene bundle.
 
-## Browser flows
+## Browser verification
 
-Chromium with WebGL software rendering; desktop 1440×900, touch portrait 390×844 and 320×568, and landscape 844×390:
+Desktop 1440 × 960; touch devices at 390 × 844, 320 × 568, and 768 × 1024:
 
-- The full-detail planet renders; all four systems expose their matching project or contributor records.
-- WASD and arrow keys move the probe. Satellite selection flies along a spherical path and opens the selected record on arrival.
-- Animated camera follow reaches a project with normal motion enabled; dragging the camera does not accidentally inspect a satellite.
-- E opens the nearby record; inspection updates scan progress. Returning to overview cancels active flight.
-- Modal dialogs pause flight, make the underlying interface inert, trap keyboard focus, close with Escape, and restore access to the interface.
-- Mobile taps approach and inspect a visible satellite. The compact destination control reaches another project and the MiMo AI contributor record.
-- Entry actions remain visible at small portrait and landscape sizes without horizontal overflow.
-- Reduced motion follows the browser preference. Low-power settings and keyboard dismissal work.
-- The NextFly date is labeled Development record, not founding or launch date.
-- Quick View contains the same eight project records, with four explicit Concept labels, and the preserved relationship context for all five organizations.
-- Forced WebGL failure retains a working Quick View link. Quick View renders complete project, relationship, and contact information with JavaScript disabled.
-- No page or console errors occurred during these flows.
+- Mars renders; selecting Jupiter switches the featured material and label.
+- Pointer drag changes the planet orientation while interaction mode is active.
+- Low-detail settings work without removing page content.
+- MiMo collaboration copy and all three roles are visible.
+- Eight featured projects render. All six category filters return the correct records.
+- Project dossiers open, close with Escape, and return keyboard focus to the invoking card.
+- Mock link strings are marked as placeholders and are not outbound links. Copying a template succeeds.
+- The additional-project disclosure exposes exactly three records; their dossiers open correctly.
+- Base and Solana counters reach 31+ and 16. Normal-motion counters animate to their targets.
+- The default contact link reaches the configured GitHub profile.
+- Mobile navigation opens, selects an anchor, and closes. Mobile project dialogs and their close controls work.
+- No horizontal page overflow appears at the tested widths.
+- Forced WebGL failure leaves the CSS scene visible and project dossiers functional.
+- With JavaScript disabled, project summaries, collaboration, ecosystem figures, and contact content are server rendered.
+- No browser page errors or console errors were observed.
 
-Rendered screenshots were inspected on desktop and mobile. Review led to smoother matte planet normals, smaller on-demand satellite labels, neutral text colors, touch target sizing, and short-screen layout adjustments. Software rendering verifies behavior and layout; these checks do not claim a hardware frame-rate benchmark.
+## Animation and rendering behavior
 
-## Deployment scope
+An instrumented WebGL context verified that draw calls advance while the hero is visible and animated, stop after Pause, and stop when the scene moves outside the viewport. Reduced-motion preference was tested separately. Software rendering validates behavior and composition; these checks do not claim a physical-device frame-rate benchmark.
 
-Publish this implementation only to the preview branch `agent/developer-archive-3d` in Vercel project `porto`. The existing production source branch `agent/typography-refresh` is preserved. Preview access remains subject to the project's existing Vercel authentication settings.
+Screenshot review resulted in a warmer Mars material, improved tablet composition, clearer planet labels, and an in-panel mobile close control.
+
+## Deployment
+
+This branch is a preview implementation. `vercel.json`, `.env.example`, and README deployment commands are included. Production promotion is a separate explicit action after preview review. Project URLs remain mock destinations, as requested in the brief.

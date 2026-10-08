@@ -1,4 +1,5 @@
-import type { MetadataRoute } from 'next'
+import type { MetadataRoute } from "next";
+import { siteUrl } from "@/lib/site";
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [{ url: 'https://kizakixd.my.id', priority: 1 }, { url: 'https://kizakixd.my.id/quick', priority: 0.9 }]
+  return [{ url: siteUrl, priority: 1 }];
 }

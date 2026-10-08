@@ -1,2 +1,4 @@
-import OrbitExperience from '@/components/orbit/OrbitExperience'
-export default function Home() { return <OrbitExperience /> }
+import GalaxyPortfolio from "@/components/galaxy/GalaxyPortfolio";
+export default function Home() {
+  return <GalaxyPortfolio />;
+}
