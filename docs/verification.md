@@ -1,29 +1,33 @@
-# Archive verification
+# Orbital Works verification
 
-Verified on 2026-10-08 against the production Next.js build served with `next start`.
+Verified on 8 October 2026 against the production Next.js build served with `next start`.
 
-## Automated checks
+## Build and navigation
 
-- `npm run build`: passes, including TypeScript validation and static route generation.
-- `npm run test:navigation`: 11 interactable artifacts, 28 furniture/wall footprints, all six room destinations, and 354 safe route segments. Includes artifact-to-artifact routes, floor edges, square plinth corners, and invalid destinations.
-- `git diff --check`: passes.
+- `npm run build`: passes, including TypeScript checking and static generation of all routes and the Open Graph image.
+- `npm run test:orbit`: passes 3,286 spherical navigation steps, longitude seam crossings, polar routes, antipodes, arrival, keyboard limits, and camera-relative satellite occlusion.
+- `npm run typecheck` and `git diff --check`: pass.
+- Initial route JavaScript: 113 kB; Quick View: 110 kB. Three.js and the scene are loaded separately through a dynamic client import.
 
-## Browser checks
+## Browser flows
 
-Chromium with WebGL software rendering, desktop 1280×800 and mobile touch layouts at 390×844 and 320×568:
+Chromium with WebGL software rendering; desktop 1440×900, touch portrait 390×844 and 320×568, and landscape 844×390:
 
-- Enter Archive mounts the world and reveals the developer character.
-- WASD moves the character; E inspects nearby records; Escape closes the inspector.
-- Auto-walk reaches all six rooms through connected floors.
-- AI records retain Xiaomi and MiMo AI with contributor context.
-- Onchain records label Base and Robinhood Chain as ecosystem work and Pons Family as team support.
-- Communication Terminal exposes the existing contact links.
-- Settings toggles and Escape dismissal work.
-- Mobile artifact taps approach and open the matching record; destination navigation works without a joystick.
-- Both mobile widths keep the entry action visible and avoid horizontal page overflow.
-- Quick View renders all six selected projects and the same relationship/timeline data.
-- Forced WebGL failure retains access to the complete Quick View.
-- Quick View content remains available with JavaScript disabled.
-- No browser page errors or console errors during these flows.
+- The full-detail planet renders; all four systems expose their matching project or contributor records.
+- WASD and arrow keys move the probe. Satellite selection flies along a spherical path and opens the selected record on arrival.
+- Animated camera follow reaches a project with normal motion enabled; dragging the camera does not accidentally inspect a satellite.
+- E opens the nearby record; inspection updates scan progress. Returning to overview cancels active flight.
+- Modal dialogs pause flight, make the underlying interface inert, trap keyboard focus, close with Escape, and restore access to the interface.
+- Mobile taps approach and inspect a visible satellite. The compact destination control reaches another project and the MiMo AI contributor record.
+- Entry actions remain visible at small portrait and landscape sizes without horizontal overflow.
+- Reduced motion follows the browser preference. Low-power settings and keyboard dismissal work.
+- The NextFly date is labeled Development record, not founding or launch date.
+- Quick View contains the same eight project records, with four explicit Concept labels, and the preserved relationship context for all five organizations.
+- Forced WebGL failure retains a working Quick View link. Quick View renders complete project, relationship, and contact information with JavaScript disabled.
+- No page or console errors occurred during these flows.
 
-Screenshot review prompted fixes for coplanar floors, the gate occluding the player, small text, mobile label sizing, and short-screen entry layout. Software-rendered browser checks validate behavior and layout; they are not hardware performance benchmarks.
+Rendered screenshots were inspected on desktop and mobile. Review led to smoother matte planet normals, smaller on-demand satellite labels, neutral text colors, touch target sizing, and short-screen layout adjustments. Software rendering verifies behavior and layout; these checks do not claim a hardware frame-rate benchmark.
+
+## Deployment scope
+
+Publish this implementation only to the preview branch `agent/developer-archive-3d` in Vercel project `porto`. The existing production source branch `agent/typography-refresh` is preserved. Preview access remains subject to the project's existing Vercel authentication settings.

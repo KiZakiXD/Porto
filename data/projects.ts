@@ -1,3 +1,4 @@
+import type { SystemId } from "./orbit"
 import type { PortfolioLink } from "./profile"
 import type { RelationshipType } from "./relationships"
 
@@ -12,83 +13,126 @@ export interface Project {
   links: PortfolioLink[]
   status?: string
   relationship?: RelationshipType
+  system: SystemId
+  kind: "development" | "concept"
+  shortTag: string
+  date?: { label: string; value: string }
 }
 
-// Summaries use repository READMEs/manifests inspected on 2026-10-06.
-// Private repositories contribute only a short project description, never source or credentials.
-// Years identify confirmed repository activity, not unverified launch dates.
-export const projects: Project[] = [
+// Real development records are owner-supplied; concepts are explicitly identified.
+// See docs/project-provenance.md for verification scope and date semantics.
+// description mirrors summary so all interfaces consume the same short record.
+const records: Array<Omit<Project, "description">> = [
   {
-    id: "office-ai",
-    title: "OfficeAi",
-    category: "AI / SYSTEMS",
-    summary: "A virtual office connected to real AI workflows.",
-    description: "A 3D team workspace with agent assignments, a mission board, and a model directory. The backend preserves task progress, retries temporary failures, and connects the interface to a private model gateway. Source remains private.",
-    technologies: ["Next.js", "TypeScript", "Three.js", "Node.js", "SQLite"],
-    year: "2026",
-    status: "Active development",
-    relationship: "PERSONAL PROJECT",
-    links: [{ label: "Discuss project", href: "mailto:aldizakiapratama@gmail.com?subject=OfficeAi%20project" }],
+    id: "9e9app",
+    title: "9e9App",
+    category: "Web3 application",
+    summary: "Web3 application development within the Robinhood / Ethereum ecosystem.",
+    technologies: [],
+    links: [],
+    status: "Development",
+    relationship: "CONTRIBUTOR",
+    system: "robinhood",
+    kind: "development",
+    shortTag: "WEB3 APPLICATION",
   },
   {
-    id: "xypher",
-    title: "XYPHER",
-    category: "ONCHAIN / DATA",
-    summary: "A research workspace for market and liquidity data.",
-    description: "Token discovery, network filters, a local watchlist, price history, and exportable order-book estimates. Server-side adapters preserve missing-data states. The implemented product provides research tools; autonomous trading remains a development direction.",
-    technologies: ["JavaScript", "Node.js", "REST APIs", "Serverless functions"],
-    year: "2026",
-    status: "Research interface",
-    relationship: "PERSONAL PROJECT",
-    links: [{ label: "Discuss project", href: "mailto:aldizakiapratama@gmail.com?subject=XYPHER%20project" }],
+    id: "nextcard",
+    title: "NextCard — Payment",
+    category: "Payments",
+    summary: "Payment-focused product development for the Robinhood / Ethereum ecosystem.",
+    technologies: [],
+    links: [],
+    status: "Development",
+    relationship: "CONTRIBUTOR",
+    system: "robinhood",
+    kind: "development",
+    shortTag: "PAYMENTS",
+  },
+  {
+    id: "nodepay",
+    title: "NodePay",
+    category: "Web3 development",
+    summary: "Web3 development work included in this collection of Robinhood / Ethereum projects.",
+    technologies: [],
+    links: [],
+    status: "Development",
+    relationship: "CONTRIBUTOR",
+    system: "robinhood",
+    kind: "development",
+    shortTag: "WEB3 DEVELOPMENT",
   },
   {
     id: "nextfly",
     title: "NextFly",
-    category: "WEB / MARKET TOOLS",
-    summary: "Price, liquidity, and activity in one market interface.",
-    description: "A market-intelligence website with token metrics, provider fallbacks, and a configurable data layer. Quote timestamps and unavailable metrics stay visible so the interface reflects the data actually returned by its sources.",
-    technologies: ["JavaScript", "Node.js", "Market APIs", "CSS"],
-    year: "2026",
-    status: "Market interface",
-    relationship: "PERSONAL PROJECT",
-    // Public domain supplied by the owner; it is not a private repository link.
+    category: "Market intelligence",
+    summary: "A market-intelligence interface for tracking price, liquidity, and token activity around Robinhood Chain.",
+    technologies: ["JavaScript", "Node.js", "Market APIs"],
+    // The public domain is owner-supplied; private source links are excluded.
     links: [{ label: "Website", href: "https://nextfly.app" }],
+    status: "Development",
+    relationship: "PERSONAL PROJECT",
+    system: "robinhood",
+    kind: "development",
+    shortTag: "MARKET INTELLIGENCE",
+    // Confirmed September 2026 repository activity; not a founding or launch date.
+    date: { label: "Development record", value: "Sep 2026" },
   },
   {
-    id: "solmera",
-    title: "SOLMERA",
-    category: "FRONTEND / RWA",
-    summary: "An interface concept for energy assets onchain.",
-    description: "A product prototype combining an asset explorer, digital asset passports, and an interactive solar cash-flow model. It explores solar, storage, and EV infrastructure on Robinhood Chain. Reference assets are fictional; this is a concept, not an operating investment product.",
-    technologies: ["Next.js", "React", "Tailwind CSS", "Wallet integration"],
-    year: "2026",
-    status: "Concept prototype",
+    id: "base-stillledger",
+    title: "Stillledger",
+    category: "Payment receipts",
+    summary: "A concept for turning Base payments into clear, shareable receipts for independent work.",
+    technologies: [],
+    links: [],
+    status: "Concept",
     relationship: "EXPERIMENT",
-    links: [{ label: "Discuss project", href: "mailto:aldizakiapratama@gmail.com?subject=SOLMERA%20project" }],
+    system: "base",
+    kind: "concept",
+    shortTag: "RECEIPTS / CONCEPT",
   },
   {
-    id: "base-api",
-    title: "BaseAPI",
-    category: "DEVELOPER TOOLS",
-    summary: "An Express API starter with a Swagger playground.",
-    description: "A public API project exploring modular routes, middleware, static resources, and interactive endpoint documentation. Adapted from an existing API base credited in the source. The project name is unrelated to the Base blockchain.",
-    technologies: ["Node.js", "Express", "Swagger", "JavaScript"],
-    year: "2024",
-    status: "Code archive",
-    relationship: "OPEN SOURCE",
-    links: [{ label: "View code", href: "https://github.com/KiZakiXD/BaseAPI" }],
+    id: "base-threadwake",
+    title: "Threadwake",
+    category: "Wallet automation",
+    summary: "A concept for following selected Base wallet events and organizing useful alerts into a quiet activity feed.",
+    technologies: [],
+    links: [],
+    status: "Concept",
+    relationship: "EXPERIMENT",
+    system: "base",
+    kind: "concept",
+    shortTag: "AUTOMATION / CONCEPT",
   },
   {
-    id: "whatsapp-ai",
-    title: "WhatsApp AI Bot",
-    category: "AI / AUTOMATION",
-    summary: "An early model-API experiment inside a chat workflow.",
-    description: "A public Node.js bot integrating the OpenAI API with WhatsApp messaging through Baileys. It supports automatic replies and a command-based mode. Preserved as an earlier learning project; its dependencies and API integration reflect that period.",
-    technologies: ["Node.js", "JavaScript", "OpenAI API", "Baileys"],
-    year: "2023",
-    status: "Code archive",
-    relationship: "OPEN SOURCE",
-    links: [{ label: "View code", href: "https://github.com/KiZakiXD/OpenAi" }],
+    id: "solana-tidefolio",
+    title: "Tidefolio",
+    category: "Wallet activity",
+    summary: "A concept for a readable Solana wallet journal that connects transactions, tokens, and personal notes.",
+    technologies: [],
+    links: [],
+    status: "Concept",
+    relationship: "EXPERIMENT",
+    system: "solana",
+    kind: "concept",
+    shortTag: "WALLET JOURNAL / CONCEPT",
+  },
+  {
+    id: "solana-softmint",
+    title: "Softmint Studio",
+    category: "Creator payments",
+    summary: "A concept for a simple Solana payment page where creators can collect support and share digital releases.",
+    technologies: [],
+    links: [],
+    status: "Concept",
+    relationship: "EXPERIMENT",
+    system: "solana",
+    kind: "concept",
+    shortTag: "CREATOR TOOLS / CONCEPT",
   },
 ]
+
+export const projects: Project[] = records.map((record) => ({
+  ...record,
+  description: record.summary,
+}))

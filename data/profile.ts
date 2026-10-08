@@ -19,8 +19,8 @@ export interface Profile {
 export const profile: Profile = {
   name: "Aldi Zakia Pratama",
   handle: "KIZAKIXD",
-  title: "Developer Archive",
-  bio: "Independent developer exploring AI, automation, web engineering, and onchain tools. I build practical software with small teams and learn through experiments that become working products.",
+  title: "Developer in Orbit",
+  bio: "Independent developer building web experiences, automation, and onchain tools across connected ecosystems.",
   location: "Indonesia",
   email: "aldizakiapratama@gmail.com",
   image: "/images/profile-real.jpeg",

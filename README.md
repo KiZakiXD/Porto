@@ -1,6 +1,6 @@
-# KIZAKIXD — The Developer Archive
+# KIZAKIXD — Orbital Works
 
-An explorable developer portfolio built with Next.js App Router, React, TypeScript, Tailwind, React Three Fiber, and Three.js.
+A playable planetary portfolio built with Next.js App Router, React, TypeScript, Tailwind, React Three Fiber, and Three.js.
 
 ## Run locally
 
@@ -13,29 +13,28 @@ Production checks:
 
 ```sh
 npm run typecheck
-npm run test:navigation
+npm run test:orbit
 npm run build
 ```
 
 ## Explore
 
-Enter the archive to move through the Central Hall, Archive Corridor, AI Laboratory, Onchain Chamber, Project Forge, and Communication Terminal. Use WASD or arrow keys, click/tap the floor to walk, and press E near a record to inspect it. Selecting an artifact approaches it automatically. The location navigation provides routes between rooms without requiring game controls.
+Four planetary systems organize selected development, concepts, and contributor records: Robinhood / Ethereum, Base, Solana, and Intelligence (Xiaomi / MiMo AI). Drag to orbit the camera and scroll or pinch to zoom. Choose **Explore orbit** to pilot the probe with WASD or arrow keys. Press E near a signal to inspect it. Clicking or tapping a satellite approaches and inspects that record automatically. Mobile offers a compact destination selector instead of a joystick.
 
-Quick View at `/quick` presents the same content as a conventional portfolio. It is available without WebGL and includes all projects, relationships, timeline records, technologies, and contact links. No API key or environment variable is required.
+**Quick View** at `/quick` presents the same project descriptions, organization context, and contact links without a canvas. It works with JavaScript disabled. No API key or environment variable is required. Reduced motion follows the operating system preference and can be changed in settings; low power reduces pixel ratio, surface detail, and stars.
 
 ## Edit content
 
 - `data/profile.ts`: identity and contact links
-- `data/projects.ts`: curated project records
+- `data/projects.ts`: development records, explicitly labeled concepts, and sourced dates
 - `data/relationships.ts`: explicit organization relationship types
-- `data/timeline.ts`: dated, confirmed chapters
-- `data/technologies.ts`: capability groups
-- `data/world.ts`: locations and world/content identifiers
+- `data/orbit.ts`: system styling, signal slots, and runtime interfaces
+- `data/timeline.ts` and `data/technologies.ts`: retained source records for future archive views
 
-Both views consume these modules. World meshes reference record IDs instead of embedding long portfolio text. Private project source is not published here.
+Scene signals reference record IDs. Project summaries are shared by the scene inspector and Quick View. Read `docs/project-provenance.md` before adding dates, deployment claims, or network affiliations. Private project source is not published here.
 
 ## Baseline and deployment
 
-Implemented on `agent/developer-archive-3d`, based on production branch `agent/typography-refresh` at `d005ddfdfcb601a53ac537c2343c9c92a418ec06`. The Vercel project is `porto`. Keep preview and production promotion separate; the existing production branch remains available.
+Working branch: `agent/developer-archive-3d`. Original production baseline: `agent/typography-refresh` at `d005ddfdfcb601a53ac537c2343c9c92a418ec06`. Vercel project: `porto`. The working branch receives preview deployments; production remains separate.
 
-The scene uses local procedural geometry and materials, bounded device-pixel ratio, reduced-motion support, and a low-power option. There are no external models, runtime font downloads, postprocessing effects, or third-party asset licenses required for the world.
+The planet, atmosphere, rings, satellites, and probe are procedural geometry and shaders. The scene uses no external models, runtime font downloads, or postprocessing. Brand marks identify the relevant ecosystem or technology, not a partnership or endorsement. See `docs/brand-sources.md` and `docs/verification.md`.

@@ -1,5 +1,2 @@
-import ArchiveExperience from '@/components/archive/ArchiveExperience'
-
-export default function Home() {
-  return <ArchiveExperience />
-}
+import OrbitExperience from '@/components/orbit/OrbitExperience'
+export default function Home() { return <OrbitExperience /> }

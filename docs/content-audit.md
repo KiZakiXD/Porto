@@ -1,4 +1,6 @@
-# Content and baseline audit
+# Original content and baseline audit
+
+Historical audit of the initial archive implementation. The owner subsequently requested the Orbital Works direction; current project selection and evidence are recorded in `project-provenance.md`.
 
 Inspected production commit `d005ddfdfcb601a53ac537c2343c9c92a418ec06`, including `package.json`, `app/`, `components/`, `public/`, `styles/`, `hooks/`, `lib/`, Tailwind configuration, metadata, mobile navigation, and typography.
 
