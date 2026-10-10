@@ -24,7 +24,7 @@ npm run build
 - Select a satellite to navigate to its project. Browsing the HTML project collection requires no 3D controls.
 - Low, Normal, and Ultra change resolution caps, visible particle counts, asteroid instances, shader detail, and bloom. The choice persists locally.
 - Dark / light appearance and reduced motion are supported. Ambient audio starts only after an explicit click.
-- Rendering pauses outside the scene viewport and when the tab is hidden. WebGL failure leaves the HTML portfolio accessible.
+- Rendering pauses outside the scene viewport and when the tab is hidden. Without WebGL, a textured destination view keeps planet menus, skill panels, the orbit map, and project details usable.
 
 ## Content
 

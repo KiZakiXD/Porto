@@ -40,6 +40,7 @@ export function createSpaceEngine(host: HTMLDivElement, options: EngineOptions) 
   renderer.setClearColor('#030710');
   renderer.domElement.setAttribute('aria-label', 'Interactive 3D space: planets, rocket, satellites, and a black hole');
   renderer.domElement.setAttribute('role', 'img');
+  renderer.domElement.tabIndex=0;
   host.appendChild(renderer.domElement);
 
   const ambient = new THREE.AmbientLight('#c4d8ff', 1.8);
@@ -183,7 +184,7 @@ export function createSpaceEngine(host: HTMLDivElement, options: EngineOptions) 
   function setLightMode(next: boolean){light=next;scene.background=new THREE.Color(light?'#dbe3eb':'#030710');bloom.enabled=QUALITY[quality].bloom&&!light;renderer.toneMappingExposure=light?1.3:1.16;nebulaMaterial.uniforms.uLight.value=light?1:0;}
   function dockPoint(id: DestinationId){const d=destinations.find(d=>d.id===id)!;return new THREE.Vector3(d.position[0]+d.radius*.7,d.position[1]+.6,d.position[2]+d.radius+5.2);}
   function travelTo(id: DestinationId){flightTarget=id;pendingProject=null;manualDestination=null;keys.clear();if(reducedMotion)rocket.position.copy(dockPoint(id));}
-  function setExploring(next: boolean){exploring=next;if(!next){keys.clear();flightTarget=null;pendingProject=null;manualDestination=null;velocity.set(0,0,0);rocket.position.set(14,1.5,29);}}
+  function setExploring(next: boolean){exploring=next;if(next)renderer.domElement.focus({preventScroll:true});else{keys.clear();flightTarget=null;pendingProject=null;manualDestination=null;velocity.set(0,0,0);rocket.position.set(14,1.5,29);}}
   function setReducedMotion(next:boolean){reducedMotion=next;for(const m of shaders)if(m.uniforms.uMotion)m.uniforms.uMotion.value=next?0:1;}
   function setPaused(next:boolean){paused=next;if(next)keys.clear();}
   function resize(){const w=host.clientWidth,h=host.clientHeight;if(!w||!h)return;camera.aspect=w/h;camera.fov=w<650?56:42;camera.updateProjectionMatrix();renderer.setSize(w,h);composer.setSize(w,h);}
