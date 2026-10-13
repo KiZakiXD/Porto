@@ -1,4 +1,4 @@
-import GalaxyPortfolio from "@/components/galaxy/GalaxyPortfolio";
+import Experience from "@/components/experience/Experience";
 export default function Home() {
-  return <GalaxyPortfolio />;
+  return <Experience />;
 }

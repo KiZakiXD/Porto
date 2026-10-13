@@ -1,14 +1,11 @@
-# Content source and publication notes
+# Content and reference notes
 
-This implementation uses the new Space / Galaxy brief for portfolio claims and project selection. Earlier profile copy, projects, relationships, navigation concepts, and scene code are not imported.
+The redesign was directed by the attached 34-second animation-reference video. Reviewed sequences include the rotating / reassembling sculpture around 7–9 seconds, interactive 3D and shader examples around 18–23 seconds, and a robot-led composition around 25–27 seconds. These inform the motion language; no template layout, commercial model, or component code was copied.
 
-- Role, Xiaomi/MiMo relationship, 31+ Base projects, and 16 Solana projects are owner-supplied statements. The site does not describe these as independently verified or add employment dates, customer counts, or endorsements.
-- All eleven project names and their technical directions come from the current brief. Descriptions explain design focus rather than guaranteeing attack prevention, returns, anonymity, uptime, or zero slippage.
-- Projects are grouped under Ethereum / Robinhood as requested. No contract addresses, audits, mainnet transactions, or official network partnerships are invented.
-- GitHub and live-site strings are labeled placeholders. The GitHub namespace is `YOUR_GITHUB_USERNAME`; live strings use a `-demo` suffix. None is an active outbound link. A coincidentally registered hostname is not claimed as the owner's property.
-- A project name that resembles an existing product does not establish affiliation with that product.
-- Contact uses the repository owner's GitHub identity. No old personal contact data is copied; a public email can be configured separately.
+The previous scene, interface components, content presentation, stylesheet, site mark, and social preview are replaced. The new interface uses a continuous assembly rather than selectable planet backgrounds or conventional project cards.
 
-To activate real destinations, replace the templates with verified URLs and render those as links in the dossier. Keep the placeholder label until destinations are valid and approved for publication.
+Portfolio claims and the eleven project names come from the owner brief. Base (31+) and Solana (16) totals are owner supplied. Xiaomi/MiMo role wording is owner supplied. No additional employment, partnership evidence, dates, audits, financial guarantees, or deployed-contract claims are invented.
 
-Reference video URLs were attempted through the available retrieval service but could not be played. Composition, shaders, artwork, and transitions are original interpretations of the written Mars/Jupiter, galaxy, glossy, and neon brief.
+All project destinations are mock templates, visibly labeled and non-navigable. Names resembling third-party products do not establish affiliation.
+
+Official brand assets and the Simple Icons Xiaomi path are used as identifying artwork. `public/brands/sources.json` records exact download or extraction sources and SHA-256 checksums. The original MiMo image is PNG rather than a traced SVG. No synthetic initials replace network or company marks.

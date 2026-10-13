@@ -1,34 +1,10 @@
-# KIZAKIXD — Engineering New Worlds
+# KIZAKIXD — Beyond the Block
 
-A complete, independently rebuilt portfolio based on the new Space / Galaxy brief. A cinematic Mars/Jupiter scene leads into Xiaomi–MiMo AI, eight highlighted projects, three additional projects, Base and Solana counters, capabilities, and contact.
+A new kinetic portfolio built around an original orbital assembly. A continuous Three.js scene changes position, orientation, and separation as visitors move through six chapters. Warm charcoal, bone typography, polished metal, and vermilion replace the previous interface and planet hero.
 
-## Stack
+## Run
 
-Next.js 15 App Router, React 19, TypeScript, Tailwind CSS, Three.js through React Three Fiber, local Geist fonts, and Lucide icons. Animation uses the Three.js frame loop and CSS transitions. Planet surfaces are procedural shaders with no external model or texture downloads.
-
-## Structure
-
-```text
-app/
-  page.tsx                 Page entry
-  layout.tsx               Fonts, metadata, viewport
-  globals.css              Visual system and responsive layouts
-  error.tsx                Page-level recovery
-  icon.svg                 Site mark
-  opengraph-image.tsx       Generated social preview
-  robots.ts, sitemap.ts    Search metadata
-components/galaxy/
-  GalaxyPortfolio.tsx      Sections, filters, counters, accessible dialogs
-  SpaceScene.tsx           Planet shaders, stars, rotation, motion control
-  Marks.tsx                UI and project symbols
-data/portfolio.ts          Current content and mock URL templates
-lib/site.ts                Public URL and contact configuration
-vercel.json                Framework and build settings
-```
-
-## 1. Run locally
-
-Use Node.js 22 LTS or newer.
+Node.js 22 LTS:
 
 ```sh
 npm ci
@@ -36,22 +12,55 @@ cp .env.example .env.local
 npm run dev
 ```
 
-Open `http://localhost:3000`. No environment variables are required. The default contact destination is the GitHub profile; set a public contact email to use email instead.
+Open http://localhost:3000. The local fonts and brand assets do not require third-party requests at runtime.
 
-## 2. Configure content
+## Structure
 
-Edit `.env.local`:
+```text
+app/page.tsx                         Page entry
+app/layout.tsx                       Local Syne / Geist fonts and metadata
+app/globals.css                      New visual system and responsive composition
+app/fonts/                           Syne ExtraBold and OFL license
+components/experience/Experience.tsx  Six chapters, controls, project records
+components/experience/KineticWorld.tsx Segmented geometry, camera choreography, reflection environment
+public/brands/                       Authentic source artwork
+public/brands/sources.json            Asset provenance and checksums
+data/folio.ts                        Owner content and project records
+lib/site.ts                          Public URL / contact configuration
+vercel.json                          Next.js deployment configuration
+```
+
+## Experience
+
+- Scroll changes the assembly's placement, orientation, scale, and separation. Pointer movement adds a small camera response.
+- **Disassemble / Reassemble** changes the eighteen independently animated ring segments.
+- **Low / Normal / Ultra** change geometry resolution, star count, antialiasing, and pixel ratio.
+- Pause stops autonomous motion. Scroll and UI interactions still redraw the scene. Reduced motion defaults to pause and disables smooth page scrolling.
+- Rendering stops while the document is hidden. The final work and contact chapters use demand rendering.
+- The three network selectors display the owner-provided Ethereum/Robinhood, Base, and Solana records.
+- Eight featured project rows and three further explorations open native dialogs with focus restoration, Escape dismissal, and copyable mock URL templates.
+- WebGL failure leaves the CSS orbital illustration and functional portfolio interface. No-JavaScript visitors receive project descriptions and all ecosystem totals through a static fallback.
+
+## Content and assets
+
+Edit `data/folio.ts` for project content, roles, and ecosystem totals. The Xiaomi/MiMo relationship and the Base / Solana counts come from the owner brief. This implementation does not add employment dates, deployed contracts, audits, or verified affiliations.
+
+Project destinations are deliberately labeled placeholders and rendered as copyable text. Replace them with confirmed URLs before enabling real outbound links.
+
+Brand artwork is downloaded from official brand sources and Simple Icons, with the source of each asset recorded in `public/brands/sources.json`. MiMo is supplied as its official transparent PNG; the other marks are SVG. Xiaomi’s vector path is from Simple Icons, using Xiaomi brand orange. The artwork itself is not redrawn, distorted, recolored, or animated. The mechanical sculpture and all page compositions are original.
+
+## Configuration
+
+Optional public settings in `.env.local`:
 
 ```dotenv
-NEXT_PUBLIC_SITE_URL=https://your-domain.com
+NEXT_PUBLIC_SITE_URL=https://kizakixd.my.id
 NEXT_PUBLIC_CONTACT_EMAIL=
 ```
 
-These are public presentation settings, not secrets. Keep the email empty for GitHub contact. Add an address only when it should be publicly visible.
+Leave the contact email empty to use the GitHub profile. These variables are public display settings.
 
-Edit `data/portfolio.ts` for project copy, collaboration wording, counters, and categories. The 31+ and 16 counts and Xiaomi/MiMo relationship come from the current owner brief. Mock URLs are clearly labeled, non-navigable strings; they are not asserted to be published repositories or live products. See `docs/content-notes.md` before activating them.
-
-## 3. Validate
+## Validate and deploy
 
 ```sh
 npm run build
@@ -59,21 +68,7 @@ npm run typecheck
 npm run start
 ```
 
-Visit the production build at `http://localhost:3000`. Verify filters, project dialogs, the three additional records, mobile navigation, both planet options, and contact configuration.
-
-## 4. Deploy a Vercel preview
-
-`vercel.json` selects Next.js, `npm ci`, and `npm run build`. No output-directory override is needed.
-
-Dashboard workflow:
-
-1. Import this repository, or open its existing Vercel project.
-2. Select branch `agent/galaxy-portfolio-rebuild` for the preview.
-3. Use the repository root as Root Directory and Node.js 22.x.
-4. Add the two public environment values for the desired Preview / Production environments.
-5. Deploy and inspect the preview URL.
-
-CLI workflow:
+To deploy a preview:
 
 ```sh
 npx vercel login
@@ -81,32 +76,15 @@ npx vercel link
 npx vercel deploy
 ```
 
-For this repository, select the existing `porto` project in the intended account. For a separate copy, select the project that should receive that copy. Do not commit `.vercel/` or authentication files.
+Select the existing **porto** project for this repository. Dashboard settings: Next.js, repository root, Node.js 22.x, install `npm ci`, build `npm run build`. `vercel.json` supplies the framework and commands. A push to branch `agent/kinetic-remake` creates a Git preview.
 
-## 5. Release to production
+Preview access follows the project's Vercel Deployment Protection settings.
 
-After reviewing the preview and replacing content or links that should not remain placeholders:
+After reviewing the implementation, a production deployment can be staged and promoted:
 
 ```sh
 npx vercel deploy --prod --skip-domain
-```
-
-Test the staged production URL, then promote that exact deployment:
-
-```sh
 npx vercel promote YOUR_STAGED_DEPLOYMENT_URL
 ```
 
-Alternatively, merge the reviewed implementation into the project's configured production branch and let Vercel Git integration deploy it. A preview does not automatically replace the production domain.
-
-## Runtime and accessibility
-
-- Enable **Drag to explore** to rotate the featured planet. Mars and Jupiter have separate procedural surface materials.
-- Motion follows the operating-system preference and can be paused. Canvas rendering stops outside the hero or when the tab is hidden.
-- Low detail reduces geometry, shader complexity, stars, and pixel ratio.
-- WebGL failure leaves a CSS planet illustration and all portfolio sections accessible.
-- Content is server rendered. Interactive 3D, filters, and dossiers enhance the page after hydration.
-- Native dialogs provide focus handling and Escape dismissal. Mock destinations can be copied without visiting them.
-- Contact uses email or GitHub; no form pretends to send messages.
-
-See `docs/verification.md` for the checks performed.
+See `docs/verification.md` for the actual verification performed.

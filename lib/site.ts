@@ -1,4 +1,4 @@
-import { portfolio } from "@/data/portfolio";
+import { profile } from "@/data/folio";
 
 function siteOrigin() {
   try {
@@ -13,4 +13,4 @@ const email = process.env.NEXT_PUBLIC_CONTACT_EMAIL?.trim();
 export const contact =
   email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
     ? { href: `mailto:${email}`, label: "via email" }
-    : { href: portfolio.github, label: "via GitHub" };
+    : { href: profile.github, label: "via GitHub" };

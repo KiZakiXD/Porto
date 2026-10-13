@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-export const alt = "KIZAKIXD — Engineering New Worlds";
+export const alt = "KIZAKIXD — Beyond the Block";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 export default function OpenGraphImage() {
@@ -10,77 +10,82 @@ export default function OpenGraphImage() {
           display: "flex",
           width: "100%",
           height: "100%",
-          position: "relative",
-          overflow: "hidden",
-          background: "#06080d",
-          color: "#f0f4ff",
+          background: "#171410",
+          color: "#ede9df",
           padding: 65,
-          fontFamily: "sans-serif",
           flexDirection: "column",
           justifyContent: "space-between",
+          position: "relative",
+          overflow: "hidden",
         }}
       >
         <div
           style={{
             display: "flex",
             position: "absolute",
-            right: -80,
-            top: 84,
-            width: 610,
-            height: 610,
+            right: 35,
+            top: 130,
+            width: 450,
+            height: 320,
+            border: "16px solid #aaa08c",
             borderRadius: "50%",
-            background:
-              "radial-gradient(circle at 25% 23%, #bc824b 0%, #704232 33%, #21191f 65%, #06080d 86%)",
-            border: "2px solid #688cc977",
+            transform: "rotate(-35deg)",
           }}
         />
         <div
           style={{
             display: "flex",
             position: "absolute",
-            right: -180,
-            top: 230,
-            width: 820,
-            height: 230,
-            border: "1px solid #789de84d",
+            right: 35,
+            top: 130,
+            width: 450,
+            height: 320,
+            border: "8px solid #ff653d",
             borderRadius: "50%",
-            transform: "rotate(-29deg)",
+            transform: "rotate(35deg)",
           }}
         />
         <div
           style={{
             display: "flex",
-            position: "relative",
+            position: "absolute",
+            right: 220,
+            top: 240,
+            width: 90,
+            height: 90,
+            background: "#ff653d",
+            transform: "rotate(45deg)",
+          }}
+        />
+        <div
+          style={{
+            display: "flex",
             justifyContent: "space-between",
-            fontSize: 16,
-            letterSpacing: 3,
-          }}
-        >
-          <span>KIZAKIXD</span>
-          <span style={{ color: "#9baccc" }}>WEB3 / BLOCKCHAIN / AI</span>
-        </div>
-        <div
-          style={{
-            display: "flex",
-            position: "relative",
-            flexDirection: "column",
-            fontSize: 91,
-            letterSpacing: -6,
-            lineHeight: 1.05,
-          }}
-        >
-          <span>Engineering</span>
-          <span style={{ color: "#b7cbeb" }}>new worlds.</span>
-        </div>
-        <div
-          style={{
-            display: "flex",
-            position: "relative",
             fontSize: 18,
-            color: "#899fbe",
+            letterSpacing: 2,
           }}
         >
-          A developer’s precision. An architect’s perspective.
+          <span>kizakixd</span>
+          <span style={{ color: "#afa497", fontSize: 14 }}>
+            WEB3 / AI / SYSTEMS
+          </span>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            fontSize: 105,
+            letterSpacing: -7,
+            lineHeight: 1.0,
+            position: "relative",
+            fontWeight: 700,
+          }}
+        >
+          <span>Beyond</span>
+          <span style={{ color: "#ff653d" }}>the block.</span>
+        </div>
+        <div style={{ display: "flex", fontSize: 18, color: "#b8af9e" }}>
+          Independent developer. Connected systems.
         </div>
       </div>
     ),

@@ -1,0 +1,52 @@
+{
+  "retrieved": "2026-10-13",
+  "assets": {
+    "base.svg": {
+      "source": "https://brand.base.org/base-brand.zip",
+      "archivePath": "1_Base Brand Assets/Logotype/Base_lockup_white.svg",
+      "page": "https://brand.base.org/core-identifiers",
+      "sha256": "9e8f22c610dbadad0741ca70354277efe9f24b39cc14376cd805da6f70b486f1"
+    },
+    "base-symbol.svg": {
+      "source": "https://brand.base.org/base-brand.zip",
+      "archivePath": "1_Base Brand Assets/The Square/Base_square_blue.svg",
+      "sha256": "b4f2b487011713f98481cc53c4ce095629b4876acbdbc2f0f3ad69a9688ba82e"
+    },
+    "solana.svg": {
+      "source": "https://solana.com/src/img/branding/solanaLogo.svg",
+      "page": "https://solana.com/branding",
+      "sha256": "ccdc416707911112da5933a6ed9f60ce1f819333e70447a5701bc012d6865f51"
+    },
+    "solana-symbol.svg": {
+      "source": "https://solana.com/src/img/branding/solanaLogoMark.svg",
+      "page": "https://solana.com/branding",
+      "sha256": "3d3401109aa061dec40a8659f1847817a8e647f98de1e65e76e86a95bbe1f08a"
+    },
+    "ethereum.svg": {
+      "source": "https://raw.githubusercontent.com/ethereum/ethereum-org-website/dev/public/images/assets/svgs/eth-diamond-black-white.svg",
+      "page": "https://ethereum.org/assets/",
+      "sha256": "80b0d456357828eedd321b8ed17426c909444f400d51390d9555fa649e20fe64"
+    },
+    "robinhood.svg": {
+      "source": "https://cdn.robinhood.com/assets/generated_assets/hoodchain_docsite/feather-light.svg",
+      "page": "https://docs.robinhood.com/chain/",
+      "sha256": "5b7506f11991ee9a62c45f5457020aae595dc7bcb93b48b7af0f27989d68aeac"
+    },
+    "robinhood-symbol.svg": {
+      "source": "https://cdn.robinhood.com/assets/generated_assets/hoodchain_docsite/feather-light.svg",
+      "page": "https://docs.robinhood.com/chain/",
+      "sha256": "5b7506f11991ee9a62c45f5457020aae595dc7bcb93b48b7af0f27989d68aeac"
+    },
+    "xiaomi.svg": {
+      "source": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/xiaomi.svg",
+      "reference": "https://www.mi.com/global/",
+      "note": "Original Simple Icons vector path. Xiaomi brand orange applied as the SVG fill; no geometry changes.",
+      "sha256": "74731cb87c039d851f05778cd5d6963f0ec4c1266509a58ac7424ed0ba2169ad"
+    },
+    "mimo.png": {
+      "source": "https://cdn.cnbj1.fds.api.mi-img.com/aife/mimo-blog-fe/doc_build/static/image/logo.99baaffe.png",
+      "page": "https://mimo.xiaomi.com/",
+      "sha256": "513e52f5ecce4cef764739f07320e99fae4a5f86adf17772c6e409a7c867044e"
+    }
+  }
+}
